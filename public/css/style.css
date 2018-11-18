@@ -1,0 +1,55 @@
+body {
+	background-color:#f5f5f5;
+
+}
+.zag {
+	text-align: center;
+}
+#form {
+ 	margin-left: 3%;
+ 	margin-top: 1%;
+ 	height: 400px;
+}
+#img-preview{
+	background-image:url(artworks.jpg);
+
+      width: 300px;
+      height: 300px;
+      
+    }
+ 	a:active, a:visited, a:hover  {
+ 		color: black;
+ 	}
+ 	#API {
+ 	margin-bottom: 1%;
+ 	}	
+.btn-info {
+	color: white;
+	size: 10%;
+}
+
+.form-group {
+	width: 70%;
+	text-align: center;
+	padding-left: 30%;
+
+}
+.abc {
+	padding-right: 5%;
+}
+.datta {
+	display:flex;
+}
+.datta1 {
+	width:50%;
+	margin-right:5%;
+}
+.datta2 {
+	width:50%;
+}
+.rel {
+	width: 72%;
+}
+.label1 {
+	padding-right:8%;
+}

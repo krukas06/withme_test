@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TestController extends Controller
+use App\Photo;
+
+use App\Page;
+
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,6 @@ class TestController extends Controller
     public function index()
     {
         //
-        return view('addpage');
     }
 
     /**
@@ -36,6 +39,13 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
+        if($request->isMethod('post')){
+
+            if($request->hasFile('img')) {
+                $file = $request->file('image');
+                $file->move(public_path() . '/image','filename.jpg');
+            }
+        }
     }
 
     /**
