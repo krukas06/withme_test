@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-   @foreach($pages as $page)
+    @foreach($photos as $brand=>$massiv)
+        @foreach($massiv as $inner_key=>$value)
+            <img src="{{asset('images')}}/{{$value}}" alt="">
+        @endforeach
 
-     <img src="{{$page->img}}" alt="">
-   @endforeach
+    @endforeach
+
+    {{--{{print_r($photos)}}--}}
 @endsection

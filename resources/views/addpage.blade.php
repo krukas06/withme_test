@@ -229,9 +229,14 @@
     {{csrf_field()}}
 
     <input type="hidden" name="user_id" value="1">
+
+
     <div>
-        <input type="file" id="img" multiple accept="image/*" name="img"/>
+        <input type="file" id="img"  multiple {{--accept="image/*"--}} name="img[]"/>
     </div>
+    {{--<div>
+        <input type="file" id="img" multiple="multiple" --}}{{--accept="image/*"--}}{{-- name="img[]"/>
+    </div>--}}
     <div>
         <img id="img-preview" src="default-preview.jpg" />
         <br />
@@ -318,34 +323,35 @@
 
 
         </div>
-        {{--<div class="form-group">
+        <div class="form-group">
             <input type="uchastok" name="uchastok" class="form-control" id="uchastok" placeholder="Номер участка">
         </div>
 
         <div class="form-group">
             <input type="mogila" name="mogila" class="form-control" id="mogila" placeholder="Номер могилы">
-        </div>--}}
+        </div>
 
         <div class="form-group">
-           {{-- <label for="API1 API2">Координаты захоронения</label>
+            {{--<label for="API1 API2">Координаты захоронения</label>
             <input type="API1" name="API1" class="form-control" id="API1" placeholder="Широта"> <input type="API2" name="API2" class="form-control" id="API2" placeholder="Долгота">--}}
             <label class="label1" for="date1">Дата Рождения</label><label class="label2" for="date2">Дата смерти</label>
+
             <div class="form-group datta">
                 <input type="date" name="data_birth" class="form-control datta1" id="date1">
                 <input type="date" name="data_dead" class="form-control datta2" id="date2">
             </div>
 
-            {{--<label for="religiya">Религия</label>
+            <label for="religiya">Религия</label>
             <div class="form-group rel">
                 <select class="form-control" id="religiya" name="religiya"  type="religiya">
                     <optgroup label="Религия">
                         <option></option>
-                        <option>Христианство</option>
+                        <option value="христианство">Христианство</option>
                     </optgroup>
                 </select>
-            </div>--}}
-            {{--<label>Видимость</label><br>
-            <div class="form-check">
+            </div>
+            {{--<label>Видимость</label><br>--}}
+            {{--<div class="form-check">
                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
                 <label class="form-check-label abc" for="gridRadios1">
                     Общий доступ

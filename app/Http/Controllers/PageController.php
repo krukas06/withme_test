@@ -37,11 +37,22 @@ class PageController extends SiteController
     //ОТОБРАЖЕНИЕ ВСЕХ СУЩЕСТВУЮЩИХ СТРАНИЦ
     public function index()
     {
-        //
-
+        //ВЫБИРАЕМ ОДНУ СТРАНИЦУ И ДЕКОДИРУЕМ ЯЧЕЙКУ С ФОТО, ДОБАВЛЯЯ ЕЕ В МАССИВ
+        $photos=[];
         $pages=$this->getPage();
+        $photo_name=$pages->img;
+        $photo_name=json_decode($photo_name);
+        array_push($photos, $photo_name);
 
-        return view('pages_lists')->with('pages',$pages);
+        /*foreach ($pages as $page){
+            $photo_name=$page->img;
+            $photo_name=json_decode($photo_name);
+            $photo_name=strstr($photo_name,'\u0417\u0434\u044b\u043c\u0430\u043a \u044d\u043a\u0440\u0430\u043d\u0430,', true);
+            array_push($photos, $photo_name);
+        }*/
+
+
+        return view('pages_lists')->with(array( 'pages'=>$pages, 'photos'=>$photos));
 
 
         //return $this->RenderOutPut();
@@ -83,11 +94,14 @@ class PageController extends SiteController
     // Получение всех областей
     public function getOblast(){
         $oblasts = $this->o_rep->get('*');
+
         return $oblasts;
     }
 
     public function getPage(){
-        $pages = $this->p_rep->get('*');
+        $pages = $this->p_rep->one();
+        //$pages->img = json_decode($pages->img);
+
         return $pages;
     }
 
@@ -118,12 +132,25 @@ class PageController extends SiteController
                 $paths[] = $imageName;
                 //dd($paths);
             }*/
-
+/*
             $file = $request->file('img');
             $input['img']= $file->getClientOriginalName();
 
-            $file->move(public_path('images'), $input['img']);
+            $file->move(public_path('images'), $input['img']);*/
             //json_encode($request->img);
+
+            $names = [];
+            foreach($request->file('img') as $image)
+            {
+                //$destinationPath = 'content_images/';
+                $filename = $image->getClientOriginalName();
+                $image->move(public_path('images'), $filename);
+                array_push($names, $filename);
+
+            }
+            //dd($names);
+            //$request->img = json_encode($names);
+
         }
 
         $data = $request->all();
@@ -144,7 +171,7 @@ class PageController extends SiteController
         //не работает присовение текущего пользователя
         //$data->user_id=Auth::user()->id;
 
-
+        $data['img'] = json_encode($names);
 
         $page = new  Page;
         $page ->fill($data);
