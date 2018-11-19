@@ -22,9 +22,9 @@ use App\Http\Requests;
          }
          return $builder->get();
      }
-     public function one(){
+     public function one($id){
          //УКАЗЫВАЕМ id страницы которую надо выбрать
-         $result=$this->model->where('id',31)->first();
+         $result=$this->model->where('id',$id)->first();
          //dd($result);
          return $result;
      }

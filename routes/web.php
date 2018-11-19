@@ -36,6 +36,13 @@ Route::resource('add_photo', 'PhotoController')->only(['store'])->middleware('au
 //путь для отображения формы для добавления страницы
 Route::get('add_page', 'PageController@create')->middleware('auth');
 
+Route::resource('page', 'PageController',['parametres'=>[
+
+    'page'=>'id'
+
+]
+]);
+
 
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');

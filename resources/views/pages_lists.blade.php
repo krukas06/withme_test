@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach($photos as $brand=>$massiv)
-        @foreach($massiv as $inner_key=>$value)
-            <img src="{{asset('images')}}/{{$value}}" alt="">
-        @endforeach
 
+    @foreach($pages as $page)
+        <a href="{{route('page.show', ['id'=>$page->id])}}">Открыть страницу</a><br>
     @endforeach
-
-    {{--{{print_r($photos)}}--}}
 @endsection

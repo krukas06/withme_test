@@ -38,21 +38,11 @@ class PageController extends SiteController
     public function index()
     {
         //ВЫБИРАЕМ ОДНУ СТРАНИЦУ И ДЕКОДИРУЕМ ЯЧЕЙКУ С ФОТО, ДОБАВЛЯЯ ЕЕ В МАССИВ
-        $photos=[];
-        $pages=$this->getPage();
-        $photo_name=$pages->img;
-        $photo_name=json_decode($photo_name);
-        array_push($photos, $photo_name);
 
-        /*foreach ($pages as $page){
-            $photo_name=$page->img;
-            $photo_name=json_decode($photo_name);
-            $photo_name=strstr($photo_name,'\u0417\u0434\u044b\u043c\u0430\u043a \u044d\u043a\u0440\u0430\u043d\u0430,', true);
-            array_push($photos, $photo_name);
-        }*/
+        $pages = $this->getPages_list();
 
 
-        return view('pages_lists')->with(array( 'pages'=>$pages, 'photos'=>$photos));
+        return view('pages_lists')->with(array( 'pages'=>$pages));
 
 
         //return $this->RenderOutPut();
@@ -98,8 +88,15 @@ class PageController extends SiteController
         return $oblasts;
     }
 
-    public function getPage(){
-        $pages = $this->p_rep->one();
+    public function getPages_list(){
+        $pages = $this->p_rep->get('*');
+        //$pages->img = json_decode($pages->img);
+
+        return $pages;
+    }
+
+    public function getPage($id){
+        $pages = $this->p_rep->one($id);
         //$pages->img = json_decode($pages->img);
 
         return $pages;
@@ -189,6 +186,14 @@ class PageController extends SiteController
     public function show($id)
     {
         //
+
+        $photos=[];
+        $pages=$this->getPage($id);
+        $photo_name=$pages->img;
+        $photo_name=json_decode($photo_name);
+        array_push($photos, $photo_name);
+
+        return view('page_show')->with(array( 'pages'=>$pages, 'photos'=>$photos));
     }
 
     /**
