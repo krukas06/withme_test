@@ -30,12 +30,13 @@ Route::resource('pages', 'PageController')->only(['index']);
 //путь для сохранения страницы в БД
 Route::resource('add', 'PageController')->only(['store'])->middleware('auth');
 
-//путь для сохранения фотографий для страницы
-Route::resource('add_photo', 'PhotoController')->only(['store'])->middleware('auth');
+/*//путь для сохранения фотографий для страницы
+Route::resource('add_photo', 'PhotoController')->only(['store'])->middleware('auth');*/
 
 //путь для отображения формы для добавления страницы
 Route::get('add_page', 'PageController@create')->middleware('auth');
 
+//путь для просмотра выбраной страницы
 Route::resource('page', 'PageController',['parametres'=>[
 
     'page'=>'id'
@@ -43,7 +44,24 @@ Route::resource('page', 'PageController',['parametres'=>[
 ]
 ]);
 
+//путь для добавления епитафия к определенной страницы
+Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth');
 
+//путь для теста реалтайма
+Route::get('/', function (){
+    return view('chat');
+});
+
+//путь для теста реалтайма
+Route::post('messages',function (\Illuminate\Http\Request $request){
+
+
+
+    \App\Events\Message::dispatch($request->input('body'));
+
+
+
+});
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 

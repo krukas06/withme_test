@@ -23,4 +23,9 @@ class Page extends Model
     {
         return $this->belongsTo('App\Burial');
     }
+
+    public function epifs()
+    {
+        return $this->hasMany('App\Epif');
+    }
 }
