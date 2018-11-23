@@ -53,3 +53,11 @@ body {
 .label1 {
 	padding-right:8%;
 }
+
+#map {
+	width: 500px;
+	height: 500px;
+}
+.header {
+	padding: 5px;
+}

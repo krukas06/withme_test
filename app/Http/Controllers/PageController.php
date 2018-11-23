@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Page;
 use App\Oblast;
 use App\User;
+use App\Epif;
 use Illuminate\Support\Facades\Auth;
 
 
 use  App\Repository\PagesRepository;
+use  App\Repository\EpifsRepository;
 use  App\Repository\OblastsRepository;
 use  App\Repository\CitysRepository;
+use  App\Repository\CandlesRepository;
 /*use  App\Repository\BurialsRepository;
 use  App\Repository\RegionsRepository;
 use  App\Repository\Repository;*/
@@ -24,11 +27,13 @@ class PageController extends SiteController
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep)
+    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep, CandlesRepository $can_rep)
     {
         $this->p_rep=$p_rep;
         $this->o_rep=$o_rep;
         $this->c_rep=$c_rep;
+        $this->e_rep=$e_rep;
+        $this->can_rep=$can_rep;
         $this->template='pages';
     }
 
@@ -107,6 +112,16 @@ class PageController extends SiteController
         $citys = $this->c_rep->get('*');
         return $citys;
     }
+
+    public function getCandles(){
+        $candles= $this->can_rep->get('*');
+        return $candles;
+    }
+
+    public function getEpifs(){
+        $epifs = $this->e_rep->get('*');
+        return $epifs;
+    }
     //СОХРАНЕНИЕ В БД
     public function store(Request $request)
     {
@@ -152,6 +167,8 @@ class PageController extends SiteController
 
         $data = $request->all();
 
+        // dd($data);
+
         $this->validate($request, [
             'name' => 'required|max:255',
             'data_birth' => 'required|max:255',
@@ -193,7 +210,11 @@ class PageController extends SiteController
         $photo_name=json_decode($photo_name);
         array_push($photos, $photo_name);
 
-        return view('page_show')->with(array( 'pages'=>$pages, 'photos'=>$photos));
+
+        $epifs=$this->getEpifs();
+        $candles=$this->getCandles();
+
+        return view('page_show')->with(array( 'pages'=>$pages, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles));
     }
 
     /**

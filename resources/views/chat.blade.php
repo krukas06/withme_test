@@ -1,3 +1,4 @@
+{{--
 @extends('layouts.app')
 
 @section('content')
@@ -6,4 +7,4 @@
 
         </chat-component>
     </div>
-@endsection
+@endsection--}}

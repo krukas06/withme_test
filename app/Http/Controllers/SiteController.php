@@ -13,6 +13,8 @@ abstract class SiteController extends Controller
     protected $p_rep;
     protected $o_rep;
     protected $c_rep;
+    protected $e_rep;
+    protected $can_rep;
 
 
 

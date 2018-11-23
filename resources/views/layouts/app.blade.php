@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>" type="text/javascript"></script>
+    <script src="{{asset('myscript/script.js')}}" type="text/javascript"></script>
+
+
 </head>
 <body>
     <div id="app">
@@ -83,6 +88,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @yield('js')
     </div>
 </body>
 </html>

@@ -44,6 +44,14 @@ Route::resource('page', 'PageController',['parametres'=>[
 ]
 ]);
 
+
+Route::resource('page_update', 'PageController',['parametres'=>[
+
+    'page'=>'id'
+
+]
+]);
+
 //путь для добавления епитафия к определенной страницы
 Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth');
 
