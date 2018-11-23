@@ -68,7 +68,7 @@
                                 </button>
                             </div>
 
-                            @include('auth.social');
+                            @include('auth.social')
 
                         </div>
 

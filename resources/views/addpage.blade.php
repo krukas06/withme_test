@@ -225,14 +225,14 @@
 </div>
 
 <div class="container-fluid zag">
-    <h1>Добавление памятной страницы</h1>
+    <h1>{{(isset($pages->id)) ? 'Редактирование страницы' : 'Добавление памятной страницы'}}</h1>
 </div>
 
 
 
 
 
-<form id="form" class = "form" action="/add" method="post" enctype="multipart/form-data">
+<form id="form" class = "form" action="{{(isset($pages->id)) ? 'page_update' : '/add'}}" method="post" enctype="multipart/form-data">
 
     {{csrf_field()}}
 
@@ -291,67 +291,135 @@
     <div class="container-fluid mid">
 
         <div class="form-group">
-            <input type="familiya" name="surname" class="form-control" id="familiya" placeholder="Фамилия">
+            @if(isset($pages->id))
+                <input type="familiya" name="surname" value="{{$pages->surname}}" class="form-control" id="familiya" placeholder="Фамилия">
+            @else
+                <input type="familiya" name="surname" class="form-control" id="familiya" placeholder="Фамилия">
+            @endif
+
+
         </div>
         <div class="form-group">
-            <input type="name" name="name" class="form-control" id="name" placeholder="Имя">
+            @if(isset($pages->id))
+                <input type="name" value="{{$pages->name}}" name="name" class="form-control" id="name" placeholder="Имя">
+                @else
+                <input type="name" name="name" class="form-control" id="name" placeholder="Имя">
+            @endif
         </div>
         <div class="form-group">
-            <input type="otchestvo" name="Otchestvo" class="form-control" id="otchestvo" placeholder="Отчество">
+            @if(isset($pages->id))
+                <input type="otchestvo" value="{{$pages->Otchestvo}}" name="Otchestvo" class="form-control" id="otchestvo" placeholder="Отчество">
+            @else
+                <input type="otchestvo" name="Otchestvo" class="form-control" id="otchestvo" placeholder="Отчество">
+            @endif
+
+
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="text" id="info" rows="3" placeholder="Описание"></textarea>
+            @if(isset($pages->id))
+                <textarea class="form-control" name="text" id="info" rows="3" placeholder="Описание">{{$pages->text}}</textarea>
+            @else
+                <textarea class="form-control" name="text" id="info" rows="3" placeholder="Описание"></textarea>
+            @endif
+
+
+
         </div>
         <div class="form-group">
             <select class="form-control" id='Oblast' name="oblast_id" placeholder="Область" type="oblast">
-                @foreach($oblasts as $oblast)
-                    <option value="{{$oblast->id}}">{{$oblast->name}}</option>
-                @endforeach
+                @if(isset($pages->id))
+                    <option value="{{$pages->oblast_id}}">{{$pages->oblast_id}}</option>
+                    @else
+                    @foreach($oblasts as $oblast)
+                        <option value="{{$oblast->id}}">{{$oblast->name}}</option>
+                    @endforeach
+                @endif
+
 
             </select>
         </div>
 
         <div class="form-group">
             <select class="form-control" id="gorod" name="city" placeholder="Город" type="gorod">
-                @foreach($citys as $city)
-                    <option value="{{$city->name}}">{{$city->name}}</option>
-                @endforeach
-
+                @if(isset($pages->id))
+                    <option value="{{$pages->city}}">{{$pages->city}}</option>
+                @else
+                    @foreach($citys as $city)
+                        <option value="{{$oblast->id}}">{{$oblast->name}}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
         <div class="form-group">
             <select class="form-control" id="rajon" name="rajon" placeholder="Район" type="rajon">
-                @foreach($citys as $city)
-                    <option value="{{$city->name}}">{{$city->name}}</option>
-                @endforeach
+
+                @if(isset($pages->id))
+                    <option value="{{$pages->rajon}}">{{$pages->rajon}}</option>
+                @else
+                    @foreach($citys as $city)
+                        <option value="{{$city->name}}">{{$city->name}}</option>
+                    @endforeach
+                @endif
+
             </select>
         </div>
 
 
 
         <div class="form-group">
-            <input class="form-control" id="nazvanie" name="burials_id" value="1" placeholder="Название кладбища" type="nazvanie">
+
+            @if(isset($pages->id))
+                <input class="form-control" id="nazvanie" name="burials_id" value="{{$pages->burials_id}}" placeholder="Название кладбища" type="nazvanie">
+            @else
+                <input class="form-control" id="nazvanie" name="burials_id" value="1" placeholder="Название кладбища" type="nazvanie">
+            @endif
+
 
 
 
         </div>
         <div class="form-group">
-            <input type="uchastok" name="uchastok" class="form-control" id="uchastok" placeholder="Номер участка">
+            @if(isset($pages->id))
+                <input type="uchastok" name="uchastok" class="form-control" id="uchastok" value="{{$pages->uchastok}}" placeholder="Номер участка">
+            @else
+                <input type="uchastok" name="uchastok" class="form-control" id="uchastok" placeholder="Номер участка">
+            @endif
+
         </div>
 
         <div class="form-group">
-            <input type="mogila" name="mogila" class="form-control" id="mogila" placeholder="Номер могилы">
+            @if(isset($pages->id))
+                <input type="mogila" name="mogila" value="{{$pages->mogila}}" class="form-control" id="mogila" placeholder="Номер могилы">
+            @else
+                <input type="mogila" name="mogila" class="form-control" id="mogila" placeholder="Номер могилы">
+            @endif
+
+
+
         </div>
 
         <div class="form-group">
             <label for="coords">Координаты захоронения</label>
-            <input type="coords" name="coords" class="form-control" id="coords" placeholder="Координаты">
-            <p class="header">Кликните по карте, чтобы узнать адрес</p>
-            <div id="map"></div>
+            @if(isset($pages->id))
+                <input type="coords" name="coords" class="form-control" value="{{$pages->coords}}" id="coords" placeholder="Координаты">
+            @else
+                <input type="coords" name="coords" class="form-control" id="coords" placeholder="Координаты">
+                <p class="header">Кликните по карте, чтобы узнать адрес</p>
+                <div id="map"></div>
+            @endif
+
+
+
             <label class="label1" for="date1">Дата Рождения</label><label class="label2" for="date2">Дата смерти</label>
             <div class="form-group datta">
-                <input type="date" name="data_birth" class="form-control datta1" id="date1">
-                <input type="date" name="data_dead" class="form-control datta2" id="date2">
+                @if(isset($pages->id))
+                    <input type="date" name="data_birth" class="form-control datta1" value="{{$pages->data_birth}}" id="date1">
+                    <input type="date" name="data_dead" class="form-control datta2" value="{{$pages->data_dead}}" id="date2">
+                @else
+                    <input type="date" name="data_birth" class="form-control datta1" id="date1">
+                    <input type="date" name="data_dead" class="form-control datta2" id="date2">
+                @endif
+
             </div>
 
 
@@ -361,7 +429,15 @@
                 <select class="form-control" id="religiya" name="religiya"  type="religiya">
                     <optgroup label="Религия">
                         <option></option>
-                        <option value="христианство">Христианство</option>
+
+                        @if(isset($pages->id))
+                            <option value="{{$pages->religiya}}">{{$pages->religiya}}</option>
+                        @else
+                            @foreach($citys as $city)
+                                <option></option>
+                                <option value="христианство">Христианство</option>
+                            @endforeach
+                        @endif
                     </optgroup>
                 </select>
             </div>
@@ -379,7 +455,7 @@
                     Анонимно
                 </label>
             </div>--}}    <br>
-            <button type="submit" class="btn btn-info">Добавить</button>
+            <button type="submit" class="btn btn-info">{{(isset($pages->id)) ? 'Сохранение изменений' : 'Добавить'}}</button>
 
 </form>
 </div>

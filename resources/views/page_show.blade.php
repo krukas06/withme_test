@@ -39,6 +39,10 @@
     @endforeach
 
 
+
+    <a href="{{route('page.edit', ['id'=>$pages->id])}}"><button class="btn btn-success">Редактирование страницы</button></a>
+
+
 {{--
     <script type="text/javascript">
 

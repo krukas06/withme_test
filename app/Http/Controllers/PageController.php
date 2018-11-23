@@ -71,7 +71,6 @@ class PageController extends SiteController
 
         $citys = $this->getCitys();
 
-
         //dd($oblasts);
 
         $id = Auth::user()->id;
@@ -225,7 +224,20 @@ class PageController extends SiteController
      */
     public function edit($id)
     {
-        //
+        $oblasts=$this->getOblast();
+
+        //dd($oblasts);
+
+        $citys = $this->getCitys();
+
+        $pages=$this->getPage($id);
+
+        //dd($pages);
+
+        //dd($oblasts)
+
+
+        return view('addpage')->with(array('id'=>$id, 'oblasts'=>$oblasts, 'citys'=>$citys, 'pages'=>$pages));;
     }
 
     /**
@@ -238,6 +250,9 @@ class PageController extends SiteController
     public function update(Request $request, $id)
     {
         //
+
+        dd($request);
+
     }
 
     /**

@@ -45,7 +45,19 @@ Route::resource('page', 'PageController',['parametres'=>[
 ]);
 
 
-Route::resource('page_update', 'PageController',['parametres'=>[
+//путь для отображения формы редактирования страницы
+Route::resource('update', 'PageController',['parametres'=>[
+
+    'page'=>'id'
+
+]
+]);
+
+//путь для сохранениявыбранной страницы
+Route::resource('page', 'PageController')->only(['update'])->middleware('auth');
+
+//путь для редактирования страницы
+Route::resource('page', 'PageController',['parametres'=>[
 
     'page'=>'id'
 
@@ -57,7 +69,7 @@ Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth
 
 //путь для теста реалтайма
 Route::get('/', function (){
-    return view('chat');
+    return view('welcome');
 });
 
 //путь для теста реалтайма
@@ -74,3 +86,15 @@ Route::post('messages',function (\Illuminate\Http\Request $request){
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 
 Route::resource('photo', 'PhotoController@store')->middleware('auth');*/
+
+
+/*Route::get('/login/{provider?}',[
+    'uses' => 'AuthController@getSocialAuth',
+    'as'   => 'auth.getSocialAuth'
+]);
+
+
+Route::get('/login/callback/{provider?}',[
+    'uses' => 'AuthController@getSocialAuthCallback',
+    'as'   => 'auth.getSocialAuthCallback'
+]);*/
