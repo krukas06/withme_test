@@ -46,13 +46,15 @@ Route::resource('page', 'PageController',['parametres'=>[
 
 //путь для отображения формы для редактирования страницы
 Route::match(['get','post'], '/edit/{id}', ['uses'=>'PageController@edit', 'as'=>'pagesEdit'])->middleware('auth');
-//путь для отображения формы редактирования страницы
+
+
+/*//путь для отображения формы редактирования страницы
 Route::resource('page', 'PageController',['parametres'=>[
 
     'page'=>'id'
 
 ]
-]);
+]);*/
 
 //путь для сохранениявыбранной страницы
 /*Route::resource('page', 'PageController')->only(['update'])->middleware('auth');*/
@@ -75,6 +77,9 @@ Route::resource('page', 'PageController',['parametres'=>[
 
 //путь для добавления епитафия к определенной страницы
 Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth');
+
+//путь для добавления события к определенной страницы
+Route::resource('event_add', 'EventsController')->only(['store'])->middleware('auth');
 
 //путь для теста реалтайма
 Route::get('/', function (){

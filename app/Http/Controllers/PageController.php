@@ -16,6 +16,7 @@ use  App\Repository\EpifsRepository;
 use  App\Repository\OblastsRepository;
 use  App\Repository\CitysRepository;
 use  App\Repository\CandlesRepository;
+use  App\Repository\EventsRepository;
 /*use  App\Repository\BurialsRepository;
 use  App\Repository\RegionsRepository;
 use  App\Repository\Repository;*/
@@ -28,13 +29,14 @@ class PageController extends SiteController
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep, CandlesRepository $can_rep)
+    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep, CandlesRepository $can_rep, EventsRepository $ev_rep)
     {
         $this->p_rep=$p_rep;
         $this->o_rep=$o_rep;
         $this->c_rep=$c_rep;
         $this->e_rep=$e_rep;
         $this->can_rep=$can_rep;
+        $this->ev_rep=$ev_rep;
         $this->template='pages';
     }
 
@@ -121,6 +123,11 @@ class PageController extends SiteController
     public function getEpifs(){
         $epifs = $this->e_rep->get('*');
         return $epifs;
+    }
+
+    public function getEvents(){
+        $events = $this->ev_rep->get('*');
+        return $events;
     }
     //СОХРАНЕНИЕ В БД
     public function store(Request $request)
@@ -213,8 +220,9 @@ class PageController extends SiteController
 
         $epifs=$this->getEpifs();
         $candles=$this->getCandles();
+        $events=$this->getEvents();
 
-        return view('page_show')->with(array( 'pages'=>$pages, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles));
+        return view('page_show')->with(array( 'pages'=>$pages, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles, 'events'=>$events));
     }
 
     /**
