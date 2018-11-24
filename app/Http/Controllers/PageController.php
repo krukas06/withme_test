@@ -8,6 +8,7 @@ use App\Oblast;
 use App\User;
 use App\Epif;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 
 use  App\Repository\PagesRepository;
@@ -222,8 +223,42 @@ class PageController extends SiteController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id, Page $page)
     {
+
+        if($request->isMethod('post')){
+
+
+            //dd($request);
+            if ($request->hasFile('img')) {
+
+                $names = [];
+                foreach($request->file('img') as $image)
+                {
+                    //$destinationPath = 'content_images/';
+                    $filename = $image->getClientOriginalName();
+                    $image->move(public_path('images'), $filename);
+                    array_push($names, $filename);
+
+                }
+
+            }
+
+            $data = $request->except('_token');
+
+            $data['img'] = json_encode($names);
+
+            //$page = new  Page;
+            $page = Page::where('id', $id);
+
+            //$page->fill($data);
+
+            $page->update($data);
+
+            return view('add_succses');
+
+        }
+
         $oblasts=$this->getOblast();
 
         //dd($oblasts);
@@ -232,7 +267,7 @@ class PageController extends SiteController
 
         $pages=$this->getPage($id);
 
-        //dd($pages);
+
 
         //dd($oblasts)
 
@@ -251,7 +286,6 @@ class PageController extends SiteController
     {
         //
 
-        dd($request);
 
     }
 

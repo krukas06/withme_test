@@ -232,7 +232,7 @@
 
 
 
-<form id="form" class = "form" action="{{(isset($pages->id)) ? 'page_update' : '/add'}}" method="post" enctype="multipart/form-data">
+<form id="form" class = "form" action=" {{(isset($pages->id)) ? route('pagesEdit', ['id'=>$pages->id]) : '/add'}}" method="post" enctype="multipart/form-data">
 
     {{csrf_field()}}
 

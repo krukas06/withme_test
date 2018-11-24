@@ -40,7 +40,7 @@
 
 
 
-    <a href="{{route('page.edit', ['id'=>$pages->id])}}"><button class="btn btn-success">Редактирование страницы</button></a>
+    <a href="{{route('pagesEdit', ['id'=>$pages->id])}}"><button class="btn btn-success">Редактирование страницы</button></a>
 
 
 {{--

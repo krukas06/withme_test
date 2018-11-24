@@ -44,9 +44,10 @@ Route::resource('page', 'PageController',['parametres'=>[
 ]
 ]);
 
-
+//путь для отображения формы для редактирования страницы
+Route::match(['get','post'], '/edit/{id}', ['uses'=>'PageController@edit', 'as'=>'pagesEdit'])->middleware('auth');
 //путь для отображения формы редактирования страницы
-Route::resource('update', 'PageController',['parametres'=>[
+Route::resource('page', 'PageController',['parametres'=>[
 
     'page'=>'id'
 
@@ -54,15 +55,23 @@ Route::resource('update', 'PageController',['parametres'=>[
 ]);
 
 //путь для сохранениявыбранной страницы
-Route::resource('page', 'PageController')->only(['update'])->middleware('auth');
+/*Route::resource('page', 'PageController')->only(['update'])->middleware('auth');*/
 
-//путь для редактирования страницы
+
 Route::resource('page', 'PageController',['parametres'=>[
 
     'page'=>'id'
 
 ]
 ]);
+
+//путь для редактирования страницы
+/*Route::resource('page', 'PageController',['parametres'=>[
+
+    'page'=>'id'
+
+]
+]);*/
 
 //путь для добавления епитафия к определенной страницы
 Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth');
