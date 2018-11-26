@@ -240,7 +240,20 @@
 
 
     <div>
-        <input type="file" id="img"  multiple {{--accept="image/*"--}} name="img[]"/>
+
+        @if(isset($pages->id))
+                        <input type="file" id="img"  multiple {{--accept="image/*"--}} name="img[]"/>
+                        @foreach($photos as $brand=>$massiv)
+                            @foreach($massiv as $inner_key=>$value)
+
+                                <img style="width: 50px; height: 40px;" src="{{asset('images')}}/{{$value}}" alt="">
+                            @endforeach
+                        @endforeach
+        @else
+                                    <input type="file" id="img"  multiple {{--accept="image/*"--}} name="img[]"/>
+        @endif
+
+
     </div>
     {{--<div>
         <input type="file" id="img" multiple="multiple" --}}{{--accept="image/*"--}}{{-- name="img[]"/>

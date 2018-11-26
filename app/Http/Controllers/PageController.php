@@ -267,6 +267,12 @@ class PageController extends SiteController
 
         }
 
+        $photos=[];
+        $pages=$this->getPage($id);
+        $photo_name=$pages->img;
+        $photo_name=json_decode($photo_name);
+        array_push($photos, $photo_name);
+
         $oblasts=$this->getOblast();
 
         //dd($oblasts);
@@ -280,7 +286,7 @@ class PageController extends SiteController
         //dd($oblasts)
 
 
-        return view('addpage')->with(array('id'=>$id, 'oblasts'=>$oblasts, 'citys'=>$citys, 'pages'=>$pages));;
+        return view('addpage')->with(array('id'=>$id, 'photos'=>$photos, 'oblasts'=>$oblasts, 'citys'=>$citys, 'pages'=>$pages));;
     }
 
     /**
