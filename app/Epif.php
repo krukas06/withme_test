@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Epif extends Model
 {
     //
-    protected $fillable = ['name', 'text', 'user_id', 'candles_id', 'pages_id', 'img_candle'];
+    protected $fillable = ['name', 'text', 'user_id', 'candles_id', 'pages_id', 'img_candle', 'avtor', 'email'];
 
     public function User()
     {

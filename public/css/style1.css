@@ -1,0 +1,425 @@
+body {
+	background-image: url(img/backpam.png);
+	position: relative;
+	margin: 0; 
+	padding: 0; 
+	z-index:999999;
+}
+#logotip {
+	font-size: 50px;
+	font-family: Pushkin;
+	color: #917b5a;
+	
+}
+.logo a {
+	margin-left:6%;
+}
+.logo {
+	height: 175px;
+}
+#search, #login {
+	font-size:18px;
+	 font-family: 'Open Sans', sans-serif;
+	color:black;
+
+}
+.navbar {
+	padding-top:2%;
+}
+.slider {
+	width: 200px;
+	height: 200px;
+}
+
+.photo img {
+	margin-left:11%;
+	border: 3px solid #917b5a;
+	width: 650px;
+	height: 450px;
+}
+h1 {
+	font-family: 'BebasNeueRegular';
+	font-size:60px;
+	color: #917b5a;
+	}
+.text1 {
+	text-align: right;
+	margin-right: 11%;
+}
+.data2 {
+	font-size:30px;
+	 font-family: 'Open Sans', sans-serif;
+	 color: #917b5a;
+}
+.cladbishe {
+	font-size:18px;
+	font-family: 'Open Sans', sans-serif;
+	color:black;
+}
+hr {
+	background-color: black;
+	height: 2px;
+	width: 300px;
+	margin-right: 0;
+}
+article {
+	font-size:22px;
+	font-family: 'Open Sans', sans-serif;
+	font-style: italic;
+}
+#slider1 {
+
+                position:relative; 
+                  margin:0 25% 0 25%;
+                width:1000px;
+                height:200px;
+                border-top:1px solid #aaa;
+                border-bottom:1px solid #aaa;
+                }
+                /*
+    This style will be applied to the first list element (UL tag)
+    inside the container.
+    ### This should not require changing ###
+*/
+.thumbelina {
+    list-style:none;
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    white-space:nowrap;
+    font-size:0;    
+    
+    /* prevent annoying iPad cut/paste actions */
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;     
+}
+
+/* Style for the list items that surround the thumbnails */
+.thumbelina li {
+   padding:0px;
+   line-height: 0px;
+   margin:0px;
+}
+
+/* Add a border to the thumbnails. */
+.thumbelina li img {
+     border:1px solid #ccc;
+}
+
+/* Hover effect for the images */
+.thumbelina li img:hover {
+     border:1px solid #aaa;
+}
+
+
+/* Common style for the buttons */
+.thumbelina-but {
+    position:absolute;
+    background-color: #917b5a;
+    border:1px solid #aaa;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
+    z-index: 1;
+    cursor:pointer;   
+    
+    /* Font related items for the symbols used on buttons */
+    /* Obviously not needed if you're just using images */
+    color:white;
+    text-align:center;	
+    font-size:150px;
+    font-weight: bold;
+    font-family:monospace;
+	
+}
+
+/* Hover style for active button */    
+.thumbelina-but:hover {
+    color:#fff;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+}
+
+/* Disabled style when button is not active due to extents being reached. */
+/* You could do other things e.g. make buttons dissapear completely. */
+.thumbelina-but.disabled,
+.thumbelina-but.disabled:hover {
+    background-color: #b39871;
+    color: #ccc;
+    cursor:default;
+    box-shadow:none;
+	position: absolute;
+}
+
+/* Horizontal buttons. */
+.thumbelina-but.horiz {
+    width: 200px;
+    height: 200px;
+    line-height: 170px;
+    top:-1px;
+
+    
+
+}
+.contatiner-fluid img {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray; /* IE 6-9 */
+}
+/* Left edge button. */
+.thumbelina-but.horiz.left {
+    left:-200px;
+    
+}
+/* Right edge button */
+.thumbelina-but.horiz.right {
+    right:-200px;
+
+}
+.menuvibora {
+	padding-top:5%;
+
+}
+.col-5 h2, .col-7 h2
+ {
+	font-family: 'BebasNeueRegular';
+	font-size:35px;
+	color: #917b5a;
+	
+	
+}
+.col-5 h2 {
+	margin-left: 13%;
+}
+.col-7 h2 {
+ 	margin-right:11%;
+ 	margin-left:5%;
+}
+.knopki {
+	padding-top:5%;
+}
+
+.first {
+	margin-left:5%;
+}
+button {
+    border: 2px solid black; /* Параметры рамки */
+    background: white; /* Цвет фона */
+   }
+
+.btn2 {
+	 
+	  margin-left:25%;
+}
+.btn3 {
+	 
+	  margin-left:50%;
+}
+.btn {
+	border-radius: 0px !important;
+	 background-color: white;
+	  font-family: 'Open Sans', sans-serif;
+	  color:black;
+}
+.btn1 {
+	margin-left:1%;
+}
+.flowers, .uborka, .add {
+	padding-bottom: 3%;
+
+}
+.politika {
+	padding-top:4%;
+		text-align: center;
+}
+.politika a {
+
+	 font-family: 'Open Sans', sans-serif;
+	  color:black;
+	  font-size: 18px;
+}
+.layer {
+margin-top:3%;
+margin-right:8%;
+overflow: auto; /* Добавляем полосы прокрутки */
+width: 79%; /* Ширина блока */
+height: 650px; /* Высота блока */
+padding: 5px; /* Поля вокруг текста */
+border: solid 2px #917b5a; /* Параметры рамки */
+background-image: url(img/epitaf.png);
+font-family: 'Open Sans', sans-serif;
+	font-style: italic;
+font-size: 18px;
+} 
+.layer2 {
+margin-top:2%;
+margin-right:8%;
+overflow: auto; /* Добавляем полосы прокрутки */
+width: 87%; /* Ширина блока */
+height: 600px; /* Высота блока */
+padding: 5px; /* Поля вокруг текста */
+border: 0px; /* Параметры рамки */
+background-color:#f5f5f5;
+
+}
+.zapiska {
+	width:77%;
+	margin-right:23%;
+	border: 1px ;
+} 
+.abc {
+	padding: 5%;
+}
+.form-control {
+	border:  solid 1px #917b5a;
+	border-radius: 0px !important;
+	 background-color: white;
+	  font-family: 'Open Sans', sans-serif;
+	  font-size: 18px;
+	  color:black;
+	  width:500px;
+	  margin-left:15%;
+}
+.form-control:focus, .form-control-2:focus {
+    outline: 1;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237, 117, 19, 1);
+   
+}
+.datasobitiya {
+	text-align: left;
+	font-family: 'Open Sans', sans-serif;
+	font-style: bold;
+	  font-size: 25px;
+	  display: inline-block;
+}
+.nazvaniesobitiya {
+	margin-left:20%;
+	 display: inline-block;
+	 font-family: 'Open Sans', sans-serif;
+	  font-size: 18px;
+}
+.dneydosobitiya {
+	margin-left:20%;
+	display: inline-block;
+	 font-family: 'Open Sans', sans-serif;
+	  font-size: 18px;
+}
+.calendar {
+	margin-bottom: 6%;
+}
+
+@font-face {
+
+font-family: "Pushkin";
+src: url("fonts/Pushkin.otf") format("truetype"); 
+font-family:"BebasNeueRegular"; 
+src:url("fonts/BebasNeue Regular.ttf")  format("truetype") ;
+font-style: normal; 
+font-weight: normal; 
+}
+.btn {
+  color: black;
+  background-color: white;
+  border-color: #917b5a;
+}
+.btn.focus,
+.btn:focus {
+  color: black;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn:hover {
+  color:white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn.active,
+.btn:active {
+  color: white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.active:hover,
+.btn:active.focus,
+.btn:active:focus,
+.btn:active:hover {
+
+  color: white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn:active
+{
+    background-color:#917b5a !important; /* add here any color */
+}
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .8);
+	display: none;
+}
+.popup {
+	position: absolute;
+	width: 800px;
+	left: 50%;
+	top: 70%;
+	transform: translate(-50%, -50%);
+	padding: 40px;
+	box-sizing: border-box;
+	background-color: #f5f5f5;
+	color: #917b5a;
+	text-align: center;
+}
+
+.close-popup {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+}
+
+.close-popup:before {
+	content: '';
+	background-color: #917b5a;
+	position: absolute;
+	height: 1px;
+	width: 31px;
+	top: 11px;
+	left: -4px;
+	transform: rotate(-45deg);
+}
+
+.close-popup:after {
+	content: '';
+	background-color: #917b5a;
+	position: absolute;
+	height: 1px;
+	width: 31px;
+	top: 11px;
+	transform: rotate(45deg);
+	left: -4px;
+}
+
+@media screen and (max-width: 768px) {
+
+	.popup {
+		width: 100%;
+		height: 100vh;
+		font-size: 15px;
+	}
+}

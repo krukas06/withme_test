@@ -4,14 +4,24 @@ body {
 }
 .zag {
 	text-align: center;
+	font-family: 'BebasNeueRegular';
+	font-size:60px;
+	color: #917b5a;
 }
 #form {
  	margin-left: 3%;
  	margin-top: 1%;
  	height: 400px;
 }
+#logotip {
+	font-size: 50px;
+	font-family: 'Pushkin';
+	color: #917b5a;
+	margin-left:2%;
+}
+
 #img-preview{
-	background-image:url(artworks.jpg);
+	background-image:url(../images/artworks.jpg);
 
       width: 300px;
       height: 300px;
@@ -32,8 +42,21 @@ body {
 	width: 70%;
 	text-align: center;
 	padding-left: 30%;
+	
 
 }
+.form-control {
+	border: solid 1px #917b5a;
+	border-radius: 0px !important;
+	  font-family: 'Open Sans', sans-serif;
+	  font-size: 18px;
+	  color:black; 
+}
+.form-control:focus, .form-control-2:focus {
+    outline: 1;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(237, 117, 19, 1);
+   }
 .abc {
 	padding-right: 5%;
 }
@@ -53,11 +76,70 @@ body {
 .label1 {
 	padding-right:8%;
 }
-
 #map {
-	width: 500px;
-	height: 500px;
+            width: 485px;
+            height: 500px;
+        }
+        .header {
+            padding: 5px;
+        }
+
+.photo1 {
+	font-family: 'Open Sans', sans-serif; 
 }
-.header {
-	padding: 5px;
+.btn {
+  color: black;
+  background-color: white;
+  border-color: #917b5a;
+  border-radius: 0px !important;
+
+
+}
+.btn.focus,
+.btn:focus {
+  color: black;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn:hover {
+  color:white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn.active,
+.btn:active {
+  color: white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.active:hover,
+.btn:active.focus,
+.btn:active:focus,
+.btn:active:hover {
+
+  color: white;
+  background-color: #917b5a;
+  border-color: #917b5a;
+  outline: none;
+  box-shadow: none;
+}
+.btn:active
+{
+    background-color:#917b5a !important; /* add here any color */
+}
+@font-face {
+
+font-family: "Pushkin";
+src: url("../fonts/Pushkin.otf") format("truetype");
+font-family:"BebasNeueRegular"; 
+src:url("../fonts/BebasNeue Regular.ttf")  format("truetype") ;
+font-style: normal; 
+font-weight: normal; 
 }

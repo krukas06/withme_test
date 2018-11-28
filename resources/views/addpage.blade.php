@@ -212,15 +212,7 @@
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarMenu">
-        <ul class="navbar-nav ml-auto ">
-            <li class="nav-item ">
-                <a href="#" class="nav-link" id="search"><i class="fas fa-search"></i> Поиск</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link" id="login"><i class="fas fa-sign-in-alt"></i> Войти</a>
-            </li>
-        </ul>
+
 </nav>
 </div>
 

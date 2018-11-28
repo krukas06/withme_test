@@ -43,6 +43,11 @@ Route::resource('page', 'PageController',['parametres'=>[
 
 ]
 ]);
+Route::get('ad', function (){
+    return view('test');
+});
+
+
 
 //путь для отображения формы для редактирования страницы
 Route::match(['get','post'], '/edit/{id}', ['uses'=>'PageController@edit', 'as'=>'pagesEdit'])->middleware('auth');
@@ -82,9 +87,9 @@ Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth
 Route::resource('event_add', 'EventsController')->only(['store'])->middleware('auth');
 
 //путь для теста реалтайма
-Route::get('/', function (){
+/*Route::get('/', function (){
     return view('welcome');
-});
+});*/
 
 //путь для теста реалтайма
 Route::post('messages',function (\Illuminate\Http\Request $request){
@@ -96,6 +101,16 @@ Route::post('messages',function (\Illuminate\Http\Request $request){
 
 
 });
+
+//главная страница
+Route::get('/', function (){
+    return view('main');
+});
+
+
+//путь для поиска
+Route::post('search', 'SearchController@search');
+
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 

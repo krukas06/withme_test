@@ -1,5 +1,4 @@
 ymaps.ready(init);
-
 function init() {
     var myPlacemark,
         myMap = new ymaps.Map('map', {
@@ -62,4 +61,8 @@ function init() {
                 });
         });
     }
+
+
+
 }
+
