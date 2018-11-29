@@ -23,6 +23,8 @@ class SearchController extends SiteController
         //dd($data);
 
         return view('main')->with('data', $data);
+
+
     }
 
 }

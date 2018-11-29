@@ -102,14 +102,20 @@ Route::post('messages',function (\Illuminate\Http\Request $request){
 
 });
 
-//главная страница
-Route::get('/', function (){
-    return view('main');
-});
+// отображение главной страницы
+Route::resource('/', 'MainController')->only(['index']);
 
 
 //путь для поиска
 Route::post('search', 'SearchController@search');
+
+//путь для заказа услуги
+Route::resource('service', 'ServiceController')->only(['store']);
+
+//путь для отправки предложения на почту
+Route::post('message', 'MessageController@message');
+
+
 
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');

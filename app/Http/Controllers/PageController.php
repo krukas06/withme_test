@@ -217,6 +217,7 @@ class PageController extends SiteController
         $photo_name=json_decode($photo_name);
         array_push($photos, $photo_name);
 
+        //dd($photos);
 
         $epifs=$this->getEpifs();
         $candles=$this->getCandles();
