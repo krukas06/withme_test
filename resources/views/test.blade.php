@@ -38,7 +38,7 @@
 <body>
 <div class="logo">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="index.html"><p class="navbar-brand" id="logotip">Помню</p></a>
+        <a href="/"><p class="navbar-brand" id="logotip">Помню</p></a>
     </nav>
 </div>
 
@@ -61,7 +61,7 @@
                 <br>
                 <h1><strong>{{$pages->surname}} {{$pages->name}} {{$pages->Otchestvo}}</strong></h1>
                 <p class="data2"><b>{{$pages->data_birth}} - {{$pages->data_dead}}</b><br>
-                <p class="cladbishe">{{$pages->burails_is}}<br>
+                <p class="cladbishe">{{$pages->burails_id}}<br>
                     ряд {{$pages->uchastok}}<br>место {{$pages->mogila}}</p>
                 <p class="cladbishe">посмотреть на карте  <img src="
             img/metka.png" alt=""></p>

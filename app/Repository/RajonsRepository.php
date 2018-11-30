@@ -7,7 +7,7 @@
  */
 
 namespace App\Repository;
-use App\Rajons;
+use App\Rajon;
 
 class RajonsRepository extends Repository
 {

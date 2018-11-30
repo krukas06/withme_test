@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
 
+
 use  App\Repository\PagesRepository;
 use  App\Repository\EpifsRepository;
 use  App\Repository\OblastsRepository;
@@ -82,7 +83,7 @@ class MainController extends SiteController
          $photos=$page->img = json_encode($page->img);
 
      }*/
-
+        //$id = Auth::user()->id;
 
         return view('main')->with(array( 'pages'=>$pages));
     }

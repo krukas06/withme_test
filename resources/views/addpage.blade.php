@@ -228,7 +228,7 @@
 
     {{csrf_field()}}
 
-    <input type="hidden" name="user_id" value="1">
+    <input type="hidden" name="user_id" value="{{Auth::id()}}">
 
 
     <div>
@@ -350,7 +350,7 @@
                     <option value="{{$pages->city}}">{{$pages->city}}</option>
                 @else
                     @foreach($citys as $city)
-                        <option value="{{$oblast->id}}">{{$oblast->name}}</option>
+                        <option value="{{$city->id}}">{{$city->name}}</option>
                     @endforeach
                 @endif
             </select>
@@ -361,8 +361,8 @@
                 @if(isset($pages->id))
                     <option value="{{$pages->rajon}}">{{$pages->rajon}}</option>
                 @else
-                    @foreach($citys as $city)
-                        <option value="{{$city->name}}">{{$city->name}}</option>
+                    @foreach($rajons as $rajon)
+                        <option value="{{$rajon->name}}">{{$rajon->name}}</option>
                     @endforeach
                 @endif
 
@@ -433,16 +433,15 @@
             <div class="form-group rel">
                 <select class="form-control" id="religiya" name="religiya"  type="religiya">
                     <optgroup label="Религия">
-                        <option></option>
-
-                        @if(isset($pages->id))
+                        {{--@if(isset($pages->id))
+                            <option></option>
                             <option value="{{$pages->religiya}}">{{$pages->religiya}}</option>
-                        @else
-                            @foreach($citys as $city)
-                                <option></option>
+                        @else--}}
+                            {{--@foreach($citys as $city)--}}
+                                {{--<option></option>--}}
                                 <option value="христианство">Христианство</option>
-                            @endforeach
-                        @endif
+                            {{--@endforeach--}}
+                       {{-- @endif--}}
                     </optgroup>
                 </select>
             </div>

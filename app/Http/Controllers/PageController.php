@@ -17,6 +17,7 @@ use  App\Repository\OblastsRepository;
 use  App\Repository\CitysRepository;
 use  App\Repository\CandlesRepository;
 use  App\Repository\EventsRepository;
+use  App\Repository\RajonsRepository;
 /*use  App\Repository\BurialsRepository;
 use  App\Repository\RegionsRepository;
 use  App\Repository\Repository;*/
@@ -29,12 +30,14 @@ class PageController extends SiteController
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep, CandlesRepository $can_rep, EventsRepository $ev_rep)
+    public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep,
+                                CandlesRepository $can_rep, EventsRepository $ev_rep, RajonsRepository $r_rep)
     {
         $this->p_rep=$p_rep;
         $this->o_rep=$o_rep;
         $this->c_rep=$c_rep;
         $this->e_rep=$e_rep;
+        $this->r_rep=$r_rep;
         $this->can_rep=$can_rep;
         $this->ev_rep=$ev_rep;
         $this->template='pages';
@@ -74,11 +77,13 @@ class PageController extends SiteController
 
         $citys = $this->getCitys();
 
+        $rajon = $this->getRajon();
+
         //dd($oblasts);
 
         $id = Auth::user()->id;
 
-        return view('addpage')->with(array('id'=>$id, 'oblasts'=>$oblasts, 'citys'=>$citys));
+        return view('addpage')->with(array('id'=>$id, 'oblasts'=>$oblasts, 'citys'=>$citys, 'rajons'=>$rajon));
     }
 
     /**
@@ -93,6 +98,12 @@ class PageController extends SiteController
         $oblasts = $this->o_rep->get('*');
 
         return $oblasts;
+    }
+
+    public function getRajon(){
+        $rajon = $this->r_rep->get('*');
+
+        return $rajon;
     }
 
     public function getPages_list(){

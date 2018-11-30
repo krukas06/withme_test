@@ -43,9 +43,11 @@
                 <li class="nav-item  data-toggle="modal" data-target="#exampleModal2"poiska">
                 <a href="#" class="nav-link" id="search" data-toggle="modal" data-target="#exampleModal" ><img src="{{asset('images/poisk.png') }}" alt="">поиск</a>
                 </li>
+                @if(!Auth::check())
                 <li class="nav-item  data-toggle="modal" data-target="#exampleModal2"vhoda ">
                 <a href="/login" class="nav-link" id="login"><img src="{{asset('images/vhod.png') }}" alt=""> войти</a>
                 </li>
+                @endif
             </ul>
         </div>
     </nav>
@@ -75,7 +77,7 @@
     <br>
     @if(isset($data))
         @foreach($data as $dat)
-            {{$dat->name}}
+            <a href="{{route('page.show', ['id'=>$dat->id])}}">Открыть страницу</a><br>
         @endforeach
     @endif
 @endif
