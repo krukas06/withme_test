@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Mail;
+use Mail;
 
 class MessageController extends SiteController
 {
     //
     public function message(Request $request){
-        dd($request);
+        //dd($request);
         //$contacts = $this->getcontact();
         //dd($contacts);
         //$contact=view('contact')->with('contacts',$contacts);
@@ -24,14 +24,15 @@ class MessageController extends SiteController
         ]);*/
 
         $data = $request->all();
-        $result = Mail::send('email',['data'=>$data], function($m) use ($data){
-            $mail_admin = env('MAIL_ADMIN');
-            $m->from($data['email'], $data['name']);
-            $m->to($mail_admin,'mr_admin')->subject('Question');
-        });
-        if($result){
-            return redirect()->route('main')->with('status','Сообщение отправлено');
-        }
+        $result = Mail::send('email',['data'=>$data], function($message) use ($data){
+		$message->to('krukartem307@gmail.com','wefwef')->subject('Предложение или вопрос');
+		$message->from($data['email'], 'ot');
+
+	});
+
+        
+            return view('main')->with('status','Сообщение отправлено');
+        
     }
 
 }

@@ -41,5 +41,29 @@ class User extends Authenticatable
     public function roles() {
         return $this->belongsToMany('App\Role', 'role_user');
     }
+   
 
+
+
+public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->token = str_random(30);
+        });
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function confirmEmail()
+    {
+        $this->verified = true;
+        $this->token = null;
+
+        $this->save();
+    }
 }

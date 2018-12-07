@@ -1,31 +1,42 @@
 body {
-	background-color:#f5f5f5;
-
+  margin: 0; 
+  padding: 0; 
+  background-image: url(../images/background.png);
+  height: auto;
+    
 }
+
+
+.form-check-input {
+margin-top:2%;
+}
+
 .zag {
 	text-align: center;
 	font-family: 'BebasNeueRegular';
-	font-size:60px;
+	font-size:22px;
 	color: #917b5a;
-}
-#form {
- 	margin-left: 3%;
- 	margin-top: 1%;
- 	height: 400px;
-}
-#logotip {
-	font-size: 50px;
-	font-family: 'Pushkin';
-	color: #917b5a;
-	margin-left:2%;
+
 }
 
+.mainnazva {
+text-align: center;
+font-size:60px;
+font-family: 'BebasNeueRegular';
+  color: #917b5a;
+}
+.mainnazva2 {
+  font-size:30px;
+}
 #img-preview{
 	background-image:url(../images/artworks.jpg);
 
       width: 300px;
       height: 300px;
       
+    }
+    .otmena {
+      font-size:22px;
     }
  	a:active, a:visited, a:hover  {
  		color: black;
@@ -35,15 +46,21 @@ body {
  	}	
 .btn-info {
 	color: white;
-	size: 10%;
+
 }
 
 .form-group {
-	width: 70%;
-	text-align: center;
-	padding-left: 30%;
+	width: 500px;
+	position:flex;
+	margin-left:25%;
 	
 
+}
+.addq {
+  width: 150px;
+  height: 60px;
+  font-size: 30px;
+  color: #917b5a;
 }
 .form-control {
 	border: solid 1px #917b5a;
@@ -60,29 +77,14 @@ body {
 .abc {
 	padding-right: 5%;
 }
-.datta {
-	display:flex;
-}
-.datta1 {
-	width:50%;
-	margin-right:5%;
-}
-.datta2 {
-	width:50%;
-}
-.rel {
-	width: 72%;
-}
-.label1 {
-	padding-right:8%;
-}
+
+
+
 #map {
-            width: 485px;
-            height: 500px;
+            width: auto;
+            height: 300px;
         }
-        .header {
-            padding: 5px;
-        }
+        
 
 .photo1 {
 	font-family: 'Open Sans', sans-serif; 
@@ -95,6 +97,7 @@ body {
 
 
 }
+
 .btn.focus,
 .btn:focus {
   color: black;
@@ -137,9 +140,90 @@ body {
 @font-face {
 
 font-family: "Pushkin";
-src: url("../fonts/Pushkin.otf") format("truetype");
+src: url("../fonts/Pushkin.otf") format("truetype"); 
 font-family:"BebasNeueRegular"; 
 src:url("../fonts/BebasNeue Regular.ttf")  format("truetype") ;
 font-style: normal; 
 font-weight: normal; 
+}
+
+label {
+  font-size:24px;
+}
+
+.label1 {
+  margin-right: 30%;
+}
+.datta {
+  display: flex;
+  margin-left: 25%;
+}
+.rel {
+  margin-left: 25%
+}
+.otmena {
+  margin-bottom:10px;
+}
+
+@media (max-width: 993px) {
+
+.datta {
+  margin-left: 15%;
+}
+.rel {
+  margin-left: 15%
+  width: 70%;
+}
+.form-group {
+  width: 70%;
+  margin-left:15%;
+  position: relative;
+  
+
+}
+
+}
+
+@media (max-width: 576px) {
+.datta {
+  margin-left:0%;
+  width:15%;
+  display: relative;
+}
+#date1 {
+  width:50%;
+}
+#date2 {
+  width:50%;
+}
+.label1 {
+  margin-right: 10%;
+}
+.rel {
+  margin-left: 5%
+  width: 80%;
+}
+.form-group {
+  width: 80%;
+  margin-left:10%;
+  position: relative;
+  
+
+}
+
+}
+
+
+
+
+
+
+
+
+div#wrapper{
+max-width:1000px;
+margin:0 auto;
+min-height: 100%;
+height: auto !important;
+height: 100%;
 }

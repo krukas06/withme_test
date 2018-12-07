@@ -29,4 +29,11 @@ use App\Http\Requests;
          return $result;
      }
 
+         public function getLists($user_id){
+         $result=$this->model->where('user_id',$user_id);
+         //dd($result);
+         return $result->get();
+     }
+
+
 }

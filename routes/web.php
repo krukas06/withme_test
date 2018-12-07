@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -110,13 +110,48 @@ Route::resource('/', 'MainController')->only(['index']);
 Route::post('search', 'SearchController@search');
 
 //путь для заказа услуги
-Route::resource('service', 'ServiceController')->only(['store']);
+Route::resource('service', 'ServiceController')->only(['store'])->middleware('auth');
 
 //путь для отправки предложения на почту
 Route::post('message', 'MessageController@message');
 
 
 
+
+
+//маршруты для потверждения регистрации на почту
+
+Route::get('register', 'RegistrationController@register');
+Route::post('register', 'RegistrationController@postRegister');
+
+Route::get('register/confirm/{token}', 'RegistrationController@confirmEmail');
+
+Route::get('login', 'SessionsController@login')->middleware('guest');
+Route::post('login', 'SessionsController@postLogin')->middleware('guest');
+Route::get('logout', 'SessionsController@logout');
+
+Route::get('dashboard', ['middleware' => 'auth', function() {
+    return view('main');
+   // return 'Добро пожаловать, '.Auth::user()->name.'!';
+}]);
+
+
+
+//вход через соцсети
+Route::post('ulogin', 'UloginController@login');
+
+
+//маршрут для входа в личный кабинет
+Route::resource('personal', 'PersonalController')->only(['index'])->middleware('auth');
+
+
+//путь для просмотра личных заказов через кабинет
+Route::resource('services', 'ServiceController',['parametres'=>[
+
+    'services'=>'user_id'
+
+]
+]);
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 
