@@ -3,18 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use  App\Repository\UsersRepository;
+use  App\Repository\RolesRepository;
+use App\User;
 
-class PersonalController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class PersonalController extends SiteController{
+
+
+     public function __construct(UsersRepository $u_rep, RolesRepository $rol_rep){
+
+	$this->u_rep = $u_rep;
+	$this->rol_rep = $rol_rep;
+
+
+     }
+
+
     public function index()
     {
         //
-	return view('personal.personal');
+
+	$roles = $this->getRoles();
+	//dd($roles);
+	$users = $this->getUsers();
+	//dd($users);
+
+	return view('personal.personal')->with(array('users'=>$users, 'roles'=>$roles));;
     }
 
     /**
@@ -22,6 +36,20 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getUsers(){
+        $users = $this->u_rep->get('*');
+
+        return $users;
+    }
+
+
+   public function getRoles(){
+        $roles = $this->rol_rep->get('*');
+
+        return $roles;
+    }
+
+
     public function create()
     {
         //

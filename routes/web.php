@@ -153,6 +153,17 @@ Route::resource('services', 'ServiceController',['parametres'=>[
 ]
 ]);
 
+
+
+//путь для просмотра заказов пользователей админ панели
+Route::get('admin/services', 'Admin\AdminController@listServices')->middleware('auth');
+
+
+
+//путь для отправки цены пользователю в виде почты и в виде изменения цены
+Route::post('add_price', 'Admin\AdminController@addPrice')->middleware('auth');
+
+
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 
 Route::resource('photo', 'PhotoController@store')->middleware('auth');*/
