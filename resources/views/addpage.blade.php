@@ -74,10 +74,11 @@
                 <textarea class="form-control" name="text" id="info" rows="3" placeholder="Описание"></textarea>
             @endif
 </div>
-<div class="form-group">
-    <select class="form-control" id='Oblast' name="oblast_id" placeholder="Область" type="oblast">
+<div class="form-group" id="input_search">
+
+    <select  name="oblast_id" class="form-control selectpicker" id="Oblast" placeholder="Область" type="oblast" data-live-search="true" data-live-search-style="startsWith">
                 @if(isset($pages->id))
-                    <option value="{{$pages->oblast_id}}">{{$pages->oblast_id}}</option>
+                    <option data-tokens="{{$pages->oblast_id}}">{{$pages->oblast_id}}</option>
                     @else
                     @foreach($oblasts as $oblast)
                         <option value="{{$oblast->id}}">{{$oblast->name}}</option>
@@ -87,19 +88,9 @@
 
             </select>
 </div>
+
 <div class="form-group">
-    <select class="form-control" id="gorod" name="city" placeholder="Город" type="gorod">
-                @if(isset($pages->id))
-                    <option value="{{$pages->city}}">{{$pages->city}}</option>
-                @else
-                    @foreach($citys as $city)
-                        <option value="{{$city->id}}">{{$city->name}}</option>
-                    @endforeach
-                @endif
-            </select>
-</div>
-<div class="form-group">
-    <select class="form-control" id="rajon" name="rajon" placeholder="Район" type="rajon">
+    <select  name="rajon"  class="form-control selectpicker" id="rajon"  placeholder="Район" type="rajon" data-live-search="true" data-live-search-style="startsWith">
 
                 @if(isset($pages->id))
                     <option value="{{$pages->rajon}}">{{$pages->rajon}}</option>
@@ -111,6 +102,20 @@
 
             </select>
   </div>
+
+<div class="form-group">
+    <select  name="city" class="form-control selectpicker" id="gorod" placeholder="Город" type="gorod" data-live-search="true" data-live-search-style="startsWith">
+                @if(isset($pages->id))
+                    <option value="{{$pages->city}}">{{$pages->city}}</option>
+                @else
+                    @foreach($citys as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
+                @endif
+            </select>
+</div>
+
+
   <div class="form-group">
      @if(isset($pages->id))
                 <input class="form-control" id="nazvanie" name="burials_id" value="{{$pages->burials_id}}" placeholder="Название кладбища" type="nazvanie">
@@ -175,12 +180,12 @@
   <label>Видимость</label><br>
   
   <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <input class="form-check-input" type="radio" name="access" id="gridRadios1" value="0" checked>
           <label class="form-check-label abc" for="gridRadios1">
             Общий доступ
           </label>
         
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <input class="form-check-input" type="radio" name="access" id="gridRadios2" value="1">
           <label class="form-check-label" for="gridRadios2">
             Анонимно
           </label>
@@ -191,6 +196,43 @@
     
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+
+	var options = $("#Oblast option");
+	var array_option = new Array();
+
+	for(var i=1; i<options.length; i++) {
+	
+		array_option.push(options[i].text);
+		
+	}
+
+	$("#input_search").autocomplete({
+	
+		source: array_option,
+		minLength: 3 // Количество символов, от скольки начинать поиск
+		
+	});
+	
+	$.expr[":"].exact = $.expr.createPseudo(function(arg) {
+	
+		return function(element) {
+		
+			return $(element).text() === arg.trim();
+			
+		};
+		
+	});
+
+	$(document).on("click", ".ui-widget-content li div", function() {
+	
+		var target_option = $(this).text();
+		
+		$("#Oblast option:exact("+target_option+")").attr("selected", "selected");
+		
+	});
+	
+</script>
     <script>
       $('#img').change(function() {
         var input = $(this)[0];

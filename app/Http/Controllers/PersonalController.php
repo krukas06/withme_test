@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Repository\UsersRepository;
 use  App\Repository\RolesRepository;
+use  App\Repository\PagesRepository;
 use App\User;
 
 class PersonalController extends SiteController{
 
 
-     public function __construct(UsersRepository $u_rep, RolesRepository $rol_rep){
+     public function __construct(UsersRepository $u_rep, RolesRepository $rol_rep, PagesRepository $p_rep){
 
 	$this->u_rep = $u_rep;
 	$this->rol_rep = $rol_rep;
+	$this->p_rep = $p_rep;
 
 
      }
@@ -28,7 +30,21 @@ class PersonalController extends SiteController{
 	$users = $this->getUsers();
 	//dd($users);
 
-	return view('personal.personal')->with(array('users'=>$users, 'roles'=>$roles));;
+	$photos=[];
+        $pages=$this->getPages_list();
+        foreach ($pages as  $page){
+            $photo_name=$page->img;
+            $photo_name=json_decode($photo_name);
+
+            $page->img = "";
+            $page->img = $photo_name;
+
+            //array_push($photos, $photo_name);
+        }
+
+	//dd($pages);
+
+	return view('personal.personal')->with(array('users'=>$users, 'roles'=>$roles, 'pages'=>$pages));;
     }
 
     /**
@@ -47,6 +63,14 @@ class PersonalController extends SiteController{
         $roles = $this->rol_rep->get('*');
 
         return $roles;
+    }
+
+
+     public function getPages_list(){
+        $pages = $this->p_rep->get('*');
+        //$pages->img = json_decode($pages->img);
+
+        return $pages;
     }
 
 

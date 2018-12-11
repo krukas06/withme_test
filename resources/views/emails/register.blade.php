@@ -38,10 +38,14 @@
               <input id="email" class="form-control tri" name="email" value="{{ old('email') }}"  type="email" placeholder="E-mail*" required>
             </div>
 
-		<input type="hidden" name="password"  value="{{$password}}" id="password" class="form-control">
+	    <div class="form-group">
+              <input id="email" class="form-control tri" name="password" value="{{$password }}"  type="hidden" placeholder="Пароль*" required>
+            </div>
+
+
            <p class="PS">* - поля обязательны для заполнения</p>
             <div class="form-check">
-		<h4>Ваш пароль {{$password}}</h4>
+		
     <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
     <label class="form-check-label" for="exampleCheck1">Я согласен с <a href="#">правилами сайта</a> и обработкой<br> <a href="#">персональных данных</a></label>
   </div>

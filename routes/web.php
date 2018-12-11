@@ -158,11 +158,14 @@ Route::resource('services', 'ServiceController',['parametres'=>[
 //путь для просмотра заказов пользователей админ панели
 Route::get('admin/services', 'Admin\AdminController@listServices')->middleware('auth');
 
-
+//путь для просмотра вопросо пользоателей
+Route::get('admin/question', 'Admin\AdminController@listQuestion')->middleware('auth');
 
 //путь для отправки цены пользователю в виде почты и в виде изменения цены
 Route::post('add_price', 'Admin\AdminController@addPrice')->middleware('auth');
 
+//путь для отправки ответа пользователю на почту (вопрос предложение)
+Route::post('add_question', 'Admin\AdminController@addQuestion')->middleware('auth');
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 

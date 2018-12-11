@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\User;
+
 use App\Mail\UserRegistered;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SiteController;
@@ -68,16 +69,32 @@ class RegistrationController extends SiteController
     }
 
 
+
     public function postRegister(Request $request)
+
    {
+
+  //      $user = User::create($request->all());
+
+//	Mail::to($user)->send(new UserRegistered($user));
+       
+  //      $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
 
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         $user = User::create($request->all());
+
+      // dd($request);
+
+        Mail::send('emailpassword',['request'=>$request], function($message) use ($request){
+            $message->to($request['email'])->subject('Question');
+            $message->from('krukartem307@gmail.com', 'ot');
+
+        });        
 
         Mail::to($user)->send(new UserRegistered($user));
 

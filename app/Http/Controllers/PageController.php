@@ -183,7 +183,7 @@ class PageController extends SiteController
 
         }
 
-        $data = $request->except('gridRadios');
+        $data = $request->all('');
 
         // dd($data);
 

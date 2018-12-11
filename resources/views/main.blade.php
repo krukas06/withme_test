@@ -61,9 +61,13 @@
     <br>
     <br>
     @if(isset($data))
+	
         @foreach($data as $dat)
+	@if($dat->access == 0 || Auth::id() == $dat->user_id)
             <a href="{{route('page.show', ['id'=>$dat->id])}}">Открыть страницу</a><br>
+	@endif
         @endforeach
+
     @endif
 @endif
 

@@ -32,31 +32,26 @@ class UloginController extends Controller
         // Check exist user.
         if (isset($userData->id)) {
 
+            // Check user status.
+           
 
                 // Make login user.
                 Auth::loginUsingId($userData->id, TRUE);
-            }
+            
             // Wrong status.
-            else {
-                \Session::flash('flash_message_error', trans('interface.AccountNotActive'));
-            }
+           
 
-            return Redirect::back();
+           return Redirect::back();
         }
         // Make registration new user.
-//        else {
+       else {
 
-           /* // Create new user in DB.
+           //Create new user in DB.
             $newUser = User::create([
-                'nik' => $user['nickname'],
-                'name' => $user['first_name'] . ' ' . $user['last_name'],
-                'avatar' => $user['photo'],
-                'country' => $user['country'],
-                'email' => $user['email'],
-                'password' => Hash::make(str_random(8)),
-                'role' => 'user',
-                'status' => TRUE,
-                'ip' => $request->ip()
+ 	     'name' => $user['first_name'],
+            'email' =>  $user['email'],
+            'password' => Hash::make(str_random(8))
+                
             ]);
 
             // Make login user.
@@ -64,11 +59,11 @@ class UloginController extends Controller
 
             \Session::flash('flash_message', trans('interface.ActivatedSuccess'));
 
-            return Redirect::back();*/
+            return Redirect::back();
 
-  //         echo 'такго рользователя нет';
-    //    }
-  //  }
+         
+       }
+   }
 
 
 }

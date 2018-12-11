@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Mail;
 
+use App\Question;
+
 class MessageController extends SiteController
 {
     //
@@ -23,7 +25,12 @@ class MessageController extends SiteController
             'text' => 'reqiured',
         ]);*/
 
-        $data = $request->all();
+        $data = $request->except('flag');
+
+	$question = new  Question;
+        $question ->fill($data);
+        $question ->save();
+	
         $result = Mail::send('email',['data'=>$data], function($message) use ($data){
 		$message->to('krukartem307@gmail.com','wefwef')->subject('Предложение или вопрос');
 		$message->from($data['email'], 'ot');

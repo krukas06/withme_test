@@ -8,7 +8,7 @@ class City extends Model
 {
     //
 
-    public $table = "citys";
+    public $table = "geo_city";
 
     public function oblast()
     {
