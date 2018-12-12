@@ -38,7 +38,7 @@
 <div class="container-fluid videopocas justify-content-sm-center">
     <div class="row">
         <div class="col-lg-7 A">
-            <video preload="auto" id="click" poster="{{asset('images/videoback.png') }}">
+            <video preload="auto" id="click" poster="{{asset('images/copy.png') }}">
                 <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
             </video>
         </div>
@@ -161,7 +161,7 @@
         </div>
         <div class="item1 data-toggle="modal" data-target="#exampleModal2" demo">
         <a href="javascript:showhide('uniquename')" class="dobavlenie">
-            <img src="{{asset('images/zagruz.png') }}"  alt="загрузить ещё" />
+            <img src="{{asset('images/zagruz2.png') }}"  alt="загрузить ещё" />
         </a>
     </div>
     <div id="uniquename" style="display:none;">
