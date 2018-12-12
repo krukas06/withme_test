@@ -10,6 +10,8 @@
 
 @else
 <a href="{{route('services.show', ['user_id'=>Auth::id()])}}"><h3><b>Заказы</b></h3></a>
+<a href="{{route('event.show', ['user_id'=>Auth::id()])}}"><h3><b>Мои личные события</b></h3></a>
+<a href="/events"><h3>Добавление события</h3></a>
 <br>
 <h3>Мои страницы</h3>
 <br>

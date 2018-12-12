@@ -84,7 +84,7 @@ Route::resource('page', 'PageController',['parametres'=>[
 Route::resource('epif_add', 'EpifController')->only(['store'])->middleware('auth');
 
 //путь для добавления события к определенной страницы
-Route::resource('event_add', 'EventsController')->only(['store'])->middleware('auth');
+//Route::resource('event_add', 'EventsController')->only(['store'])->middleware('auth');
 
 //путь для теста реалтайма
 /*Route::get('/', function (){
@@ -167,6 +167,26 @@ Route::post('add_price', 'Admin\AdminController@addPrice')->middleware('auth');
 //путь для отправки ответа пользователю на почту (вопрос предложение)
 Route::post('add_question', 'Admin\AdminController@addQuestion')->middleware('auth');
 
+
+
+
+
+//путь для появлния форм для добавлениея событий
+Route::resource('events', 'EventsController')->only(['index']);
+
+//путь для добавления личного события
+Route::resource('myevent_add', 'EventsController')->only(['store'])->middleware('auth');
+
+//путь для добавления события усопшего
+Route::post('event_add', 'DeadController@add_event')->middleware('auth');
+
+//путь для просмотра личных заказов через кабинет
+Route::resource('event', 'EventsController',['parametres'=>[
+
+    'event'=>'user_id'
+
+]
+]);
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 
 Route::resource('photo', 'PhotoController@store')->middleware('auth');*/

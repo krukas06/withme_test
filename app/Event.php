@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['name', 'text', 'pages_id', 'category_id'];
+    protected $fillable = ['name', 'text', 'user_id', 'date'];
 
 
     public function Page()

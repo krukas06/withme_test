@@ -12,8 +12,9 @@
 </head>
 <body>
 <div id="wrapper">
+
 <div class="logo">
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-company">
         <a class="navbar-brand" href="#"><img src="{{asset('images/pomnu.png') }}" class="logotip" alt="Pomnu"></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
@@ -23,15 +24,16 @@
                 <li class="nav-item poiska" data-toggle="modal" data-target="#exampleModal3">
                     <a href="#" class="nav-link" id="search" data-toggle="modal" data-target="#exampleModal" ><img src="{{asset('images/poisk.png') }}" alt="">поиск</a>
                 </li>
-                
-                    <li class="nav-item vhoda"  data-toggle="modal">             
-			<a href="/personal" class="nav-link" id="login"><img src="{{asset('images/vhod.png') }}" alt=""> войти</a>
-                    </li>
-             
+
+                <li class="nav-item vhoda"  data-toggle="modal">
+                    <a href="/personal" class="nav-link" id="login"><img src="{{asset('images/vhod.png') }}" alt=""> войти</a>
+                </li>
+
             </ul>
         </div>
     </nav>
-</div>
+
+
 @if(isset($status))
     <h3 style="color: green;">Сообщение успешно отправлено!</h3>
 @endif

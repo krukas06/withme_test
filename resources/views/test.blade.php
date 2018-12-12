@@ -108,12 +108,17 @@
             </div>
 
         </div>
+
+	@foreach($events as $event)
+		@if($pages->id == $event->pages_id)
+			@if($event->type_flag == 0 || Auth::id() == $event->user_id)
+
         <div class="col-7">
             <!-- СОБЫТИЯ-->
-            <h2><img src="img/sobitiya.png" alt=""> события</h2>
+            <h2><img src="{{asset('images/sobitiya.png')}}" alt="">{{$event->name}}</h2>
             <div id="div" class="layer2 container">
                 <div class="container" id="zapis">
-                    <p class="datasobitiya"><b>12 ноября (1947)</b></p>
+                    <p class="datasobitiya"><b>{{$event->date}}</b></p>
                     <p class="nazvaniesobitiya">день рождение</p>
                     <p class="dneydosobitiya">осталось <img  class="calendar" src="img/sobit.png"> дней</p>
 
@@ -122,6 +127,9 @@
 
             </div>
         </div>
+		@endif
+			@endif
+	@endforeach
     </div>
 </div>
 <div class="container-fluid knopki">

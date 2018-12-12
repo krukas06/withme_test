@@ -234,6 +234,8 @@ class PageController extends SiteController
         $candles=$this->getCandles();
         $events=$this->getEvents();
 
+	//dd($events);
+
         return view('test')->with(array( 'pages'=>$pages, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles, 'events'=>$events));
     }
 

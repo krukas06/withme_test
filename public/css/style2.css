@@ -5,13 +5,26 @@ body {
 	height: auto;
    	
 }
+
+
+nav {
+background-color: #f5f5f5;
+}
+
+
+.bg-company {
+background-color: #f5f5f5;
+} 
+
+
 #logotip {
 	font-size: 50px;
 	font-family: Pushkin;
 	color: #917b5a;
 }
 .logo {
-	height: auto;
+
+height: auto; 
 }
 
 #search, #login {

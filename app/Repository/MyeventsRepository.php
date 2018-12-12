@@ -7,11 +7,13 @@
  */
 
 namespace App\Repository;
-use App\Deadevent;
+use App\Event;
 
-class EventsRepository extends Repository
+class MyeventsRepository extends Repository
 {
-    public function __construct(Deadevent $event){
+    public function __construct(Event $event){
         $this->model=$event;
     }
 }
+
+

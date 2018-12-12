@@ -4,19 +4,67 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use  App\Repository\PagesRepository;
+use  App\Repository\UsersRepository;
+use  App\Repository\MyeventsRepository;
+
+
 use App\Event;
 
-class EventsController extends Controller
+class EventsController extends SiteController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+   public function __construct(PagesRepository $p_rep, UsersRepository $u_rep, MyeventsRepository $mev_rep)
+    {
+        $this->p_rep=$p_rep;
+        $this->u_rep=$u_rep;
+	$this->mev_rep=$mev_rep;
+    }
+
+
+
     public function index()
     {
         //
+
+	$pages = $this->getPages_list();
+
+	//dd($pages);
+
+        $users = $this->getUsers();	
+	//dd($users);
+
+	return view('personal.eventsform')->with(array( 'pages'=>$pages, 'users'=>$users));
     }
+
+
+
+	 public function getEvents($user_id){
+           $events = $this->mev_rep->getLists($user_id);
+           return $events;
+        }
+
+
+       public function getUsers(){
+        $users = $this->u_rep->get('*');
+
+        return $users;
+    }
+
+
+    public function getPages_list(){
+        $pages = $this->p_rep->get('*');
+        //$pages->img = json_decode($pages->img);
+
+       return $pages;
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,7 +109,7 @@ class EventsController extends Controller
         $event ->fill($data);
         $event ->save();
 
-        return view('add_succses');
+        return view('personal.personal');
     }
 
     /**
@@ -70,9 +118,13 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id)
     {
         //
+
+	$events = $this->getEvents($user_id);
+
+	return view('personal.events_list')->with('events', $events);
     }
 
     /**
