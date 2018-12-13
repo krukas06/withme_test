@@ -23,7 +23,12 @@
      </nav>
     </div>
         
-    	
+@if(isset($status))
+<div class="status">
+<p>{{$status}}</p>
+</div>
+
+@endif    	
       <div class="container registracia justify-content-sm-center">
         <h1>Регистрация</h1>
       <br>
@@ -37,10 +42,11 @@
             <div class="form-group">
               <input id="email" class="form-control tri" name="email" value="{{ old('email') }}"  type="email" placeholder="E-mail*" required>
             </div>
-
+	 @if(isset($password))
 	    <div class="form-group">
               <input id="email" class="form-control tri" name="password" value="{{$password }}"  type="hidden" placeholder="Пароль*" required>
             </div>
+	@endif
 
 
            <p class="PS">* - поля обязательны для заполнения</p>

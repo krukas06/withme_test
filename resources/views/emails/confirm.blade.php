@@ -6,8 +6,8 @@
 </head>
 <body>
 @if(isset($user))
-<h1>Спасибо за регистрацию!, {{$user->name}}</h1>
-<br>Ваш пароль {{$user->password}}</br>
+<h1>Спасибо за регистрацию {{$user->name}} !</h1>
+
 @endif
 @if(isset($user))
 <p>

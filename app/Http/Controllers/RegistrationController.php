@@ -98,9 +98,9 @@ class RegistrationController extends SiteController
 
         Mail::to($user)->send(new UserRegistered($user));
 
-        $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
+       // $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
 	
-	return 'На ваш адрес было выслано письмо с подтверждением регистрации.';
+	return  view('emails.register')->with('status','На ваш адрес было выслано письмо с подтверждением регистрации.');
     }
 }
 
