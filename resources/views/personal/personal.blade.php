@@ -7,10 +7,13 @@
 
 <a href="/admin/services"><h3><b>Заказы пользователей</b></h3></a>
 <a href="/admin/question"><h3><b>Вопросы и предложения пользователей</b></h3></a>
+<a href="/admin/pages"><h3><b>Новые страницы</b></h3></a>
+<a href="/admin/epifs"><h3><b>Проверка сообщений</b></h3></a>
 
 @else
 <a href="{{route('services.show', ['user_id'=>Auth::id()])}}"><h3><b>Заказы</b></h3></a>
 <a href="{{route('event.show', ['user_id'=>Auth::id()])}}"><h3><b>Мои личные события</b></h3></a>
+<a href="{{route('remark.show', ['user_id'=>Auth::id()])}}"><h3><b>Замечания</b></h3></a>
 <a href="/events"><h3>Добавление события</h3></a>
 <br>
 <h3>Мои страницы</h3>

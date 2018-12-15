@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use Mail;
+use App\Page;
 use App\Service;
+use App\Remark;
+use App\Epif;
 use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Controller;
 use  App\Repository\ServicesRepository;
 use  App\Repository\QuestionsRepository;
-
-
+use  App\Repository\PagesRepository;
+use  App\Repository\RemarksRepository;
+use  App\Repository\EpifsRepository;
 
 class AdminController extends SiteController
 {
@@ -22,10 +26,13 @@ class AdminController extends SiteController
      * @return \Illuminate\Http\Response
      */
  
-    public function __construct(ServicesRepository $s_rep, QuestionsRepository $q_rep)
+    public function __construct(EpifsRepository $e_rep, RemarksRepository $rem_rep,ServicesRepository $s_rep, QuestionsRepository $q_rep, PagesRepository $p_rep)
     {
         $this->s_rep=$s_rep;
         $this->q_rep=$q_rep;
+	$this->p_rep=$p_rep;
+	$this->rem_rep=$rem_rep;
+	$this->e_rep=$e_rep;
 
     }
 
@@ -35,6 +42,56 @@ class AdminController extends SiteController
 	$services = $this->getServices();
 	//dd($services);
 	return view('admin.list_services')->with('services', $services);
+
+    }
+
+
+
+    public function listEpifs()
+    {
+        //
+        $epifs = $this->getEpifs();
+        //dd($services);
+        return view('admin.list_epifs')->with('epifs', $epifs);
+
+    }
+
+     public function confirmationPage(Request $request)
+    {
+        //
+        $data = $request->all();
+        //dd($data);
+        $page = $this->getPage($data['id']);
+
+        //dd($service);
+              
+           $page = Page::find($data['id']);
+          // dd($servic);       
+           $page->flag = 1;
+           $page->save();
+	$pages = $this->getPages_list();
+
+        return view('admin.list_pages')->with('pages', $pages);
+
+    }
+
+    
+     public function confirmationEpif(Request $request)
+    {
+        //
+        $data = $request->all();
+        //dd($data);
+        $epif = $this->getEpif($data['id']);
+
+        //dd($service);
+
+           $epif = Epif::find($data['id']);
+          // dd($servic);       
+           $epif->flag = 1;
+           $epif->save();
+        $epifs = $this->getEpifs();
+
+        return view('admin.list_epifs')->with('epifs', $epifs);
 
     }
 
@@ -70,6 +127,18 @@ class AdminController extends SiteController
 	
 
     }
+
+
+	public function addRemark(Request $request){
+
+		$data = $request->all();
+
+		$remark = new  Remark;
+                $remark ->fill($data);
+                $remark ->save();
+
+        	return view('personal.personal');
+	}
 
 
 
@@ -117,6 +186,22 @@ class AdminController extends SiteController
 
 
 
+           public function pages_list()
+    {
+        //
+        $pages = $this->getPages_list();
+        //dd($services);
+        return view('admin.list_pages')->with('pages', $pages);
+
+    }
+
+	public function getPages_list(){
+        $pages = $this->p_rep->get('*');
+        //$pages->img = json_decode($pages->img);
+
+        return $pages;
+        }
+
 	public function getService($id){
            $service = $this->s_rep->one($id);
            return $service;
@@ -124,9 +209,29 @@ class AdminController extends SiteController
 
 
 
+	
+
+	public function getPage($id){
+           $page = $this->p_rep->one($id);
+           return $page;
+        }
+
+	public function getEpif($id){
+           $epif = $this->e_rep->one($id);
+           return $epif;
+        }
+
+
+
         public function getServices(){
            $services = $this->s_rep->get('*');
            return $services;
+        }
+
+
+	public function getEpifs(){
+           $epifs = $this->e_rep->get('*');
+           return $epifs;
         }
 
 

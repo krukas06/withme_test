@@ -153,6 +153,15 @@ Route::resource('services', 'ServiceController',['parametres'=>[
 ]
 ]);
 
+//путь для просмотра личных замечаний через лк
+Route::resource('remark', 'RemarkController',['parametres'=>[
+
+    'remark'=>'user_id'
+
+]
+]);
+
+
 
 
 //путь для просмотра заказов пользователей админ панели
@@ -167,7 +176,20 @@ Route::post('add_price', 'Admin\AdminController@addPrice')->middleware('auth');
 //путь для отправки ответа пользователю на почту (вопрос предложение)
 Route::post('add_question', 'Admin\AdminController@addQuestion')->middleware('auth');
 
+//путь дляпросмотра новых страниц (неподтвержденных)
+Route::get('admin/pages', 'Admin\AdminController@pages_list')->middleware('auth');
 
+//путь для подтверждения страницы
+Route::post('admin/confirmation', 'Admin\AdminController@confirmationPage')->middleware('auth');
+
+//путь для отправки замечания
+Route::post('admin/remarks', 'Admin\AdminController@addRemark')->middleware('auth');
+
+//путь для просмотра сообщений пользователей
+Route::get('admin/epifs', 'Admin\AdminController@listEpifs')->middleware('auth');
+
+//путь для подтверждения сообщения
+Route::post('add_epif', 'Admin\AdminController@confirmationEpif')->middleware('auth');
 
 
 

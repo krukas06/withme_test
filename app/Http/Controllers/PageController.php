@@ -10,7 +10,7 @@ use App\Epif;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
-
+use  App\Repository\RolesRepository;
 use  App\Repository\PagesRepository;
 use  App\Repository\EpifsRepository;
 use  App\Repository\OblastsRepository;
@@ -31,7 +31,7 @@ class PageController extends SiteController
      */
 
     public function __construct(PagesRepository $p_rep, OblastsRepository $o_rep, CitysRepository $c_rep, EpifsRepository $e_rep,
-                                CandlesRepository $can_rep, EventsRepository $ev_rep, RajonsRepository $r_rep)
+                                CandlesRepository $can_rep, EventsRepository $ev_rep, RajonsRepository $r_rep, RolesRepository $rol_rep)
     {
         $this->p_rep=$p_rep;
         $this->o_rep=$o_rep;
@@ -40,6 +40,7 @@ class PageController extends SiteController
         $this->r_rep=$r_rep;
         $this->can_rep=$can_rep;
         $this->ev_rep=$ev_rep;
+	$this->rol_rep=$rol_rep;
         $this->template='pages';
     }
 
@@ -52,8 +53,10 @@ class PageController extends SiteController
 
         $pages = $this->getPages_list();
 
+         return response()->json(array('pages'=>$pages));
+          
 
-        return view('pages_lists')->with(array( 'pages'=>$pages));
+       // return view('pages_lists')->with(array( 'pages'=>$pages));
 
 
         //return $this->RenderOutPut();
@@ -130,6 +133,13 @@ class PageController extends SiteController
         $candles= $this->can_rep->get('*');
         return $candles;
     }
+
+     public function getRoles(){
+        $roles = $this->rol_rep->get('*');
+
+        return $roles;
+    }
+
 
     public function getEpifs(){
         $epifs = $this->e_rep->get('*');
@@ -233,10 +243,10 @@ class PageController extends SiteController
         $epifs=$this->getEpifs();
         $candles=$this->getCandles();
         $events=$this->getEvents();
-
+	$roles = $this->getRoles();
 	//dd($events);
 
-        return view('test')->with(array( 'pages'=>$pages, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles, 'events'=>$events));
+        return view('test')->with(array( 'pages'=>$pages,'roles'=>$roles, 'photos'=>$photos, 'epifs'=>$epifs, 'candles'=>$candles, 'events'=>$events));
     }
 
     /**

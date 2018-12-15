@@ -97,7 +97,7 @@
             <h2><img src="img/epitafii.png" alt=""> эпитафии</h2>
             <div id="div" class="layer container">
                 @foreach($epifs as $epif)
-                    @if($pages->id == $epif->pages_id)
+                    @if($pages->id == $epif->pages_id && $epif->flag == 1)
                         <p>{{$epif->text}}</p>
                     @endif
                  @endforeach
@@ -233,6 +233,39 @@
         <div class="close-popup js-close-campaign1"></div>
     </div>
 </div>
+
+@if(isset($roles))
+@foreach($roles as $role)
+@if(Auth::id() == 31 && $role->user_id == 31)
+ <h1><strong>Подтверждение</strong></h1>
+        <form action="/admin/confirmation" method="post">
+	<input type="hidden" name="id" value="{{$pages->id}}">
+         {{csrf_field()}}
+	<button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-success" alt="">Подтвердить</button>
+           
+</form>
+
+<br>
+<form action="/admin/remarks" method="post">
+
+<p>Замечания</p>
+{{csrf_field()}}
+<div class="form-group">
+ <input type="hidden" name="user_id" value="{{$pages->user_id}}">
+        <input type="hidden" name="page_id" value="{{$pages->id}}">
+        <input type="hidden" name="p_surname" value="{{$pages->surname}}">
+	<input type="hidden" name="p_name" value="{{$pages->name}}">
+        <input type="hidden" name="p_Otchestvo" value="{{$pages->Otchestvo}}">
+
+<textarea class="form-control odin" id="txt" name="text" rows="4"
+              placeholder="Замечание"></textarea>
+            </div>
+
+<button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-danger" alt="">Отправить замечание</button>
+
+@endif
+@endforeach
+@endif
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -15,7 +15,7 @@
 
 <div class="logo">
     <nav class="navbar navbar-expand-lg navbar-light bg-company">
-        <a class="navbar-brand" href="#"><img src="{{asset('images/pomnu.png') }}" class="logotip" alt="Pomnu"></a>
+       <a class="navbar-brand logoti" href="#">Помню</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -224,7 +224,7 @@
 </div>
 <div class="container-fluid knopki justify-content-sm-center">
     <img src="{{asset('images/Vector Smart Object4.png') }}" alt="фото"><br>
-    <a href="/add_page"><h1><b>ДОБАВИТЬ ПАМЯТНУЮ СТРАНИЦУ</b></h1></a>
+    <a href="#"><h1><b>ДОБАВИТЬ ПАМЯТНУЮ СТРАНИЦУ</b></h1></a>
     <p>Разместите основную информацию о близком человеке, которого больше нет</p>
     <br><br>
     <img src="{{asset('images/Vector Smart Object12.png') }}" alt="фото"><br>

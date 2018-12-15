@@ -86,7 +86,11 @@ class RegistrationController extends SiteController
             'password' => 'required',
         ]);
 
+	$request['verified']=1;
+
         $user = User::create($request->all());
+
+
 
       // dd($request);
 
@@ -96,7 +100,7 @@ class RegistrationController extends SiteController
 
         });        
 
-        Mail::to($user)->send(new UserRegistered($user));
+       // Mail::to($user)->send(new UserRegistered($user));
 
        // $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
 	
