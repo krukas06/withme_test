@@ -87,8 +87,7 @@ class AdminController extends SiteController
 
            $epif = Epif::find($data['id']);
           // dd($servic);       
-           $epif->flag = 1;
-           $epif->save();
+           $epif->delete();
         $epifs = $this->getEpifs();
 
         return view('admin.list_epifs')->with('epifs', $epifs);

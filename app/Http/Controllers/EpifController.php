@@ -4,14 +4,58 @@ namespace App\Http\Controllers;
 
 use App\Epif;
 use Illuminate\Http\Request;
+use  App\Repository\EpifsRepository;
 
-class EpifController extends Controller
+
+
+class EpifController extends SiteController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct(EpifsRepository $e_rep){
+
+	 $this->e_rep=$e_rep;
+
+     }
+
+
+    public function deleteEpif(Request $request)
+    {
+	$data = $request->all();
+	$epif = Epif::find($data['id']);
+	$epif->delete();
+
+	return redirect('/page/'.$data['pages_id']);
+   }
+
+    public function editEpif(Request $request)
+    {
+//
+      $data = $request->all();
+      //dd($data);
+      $epif = $this->getEpif($data['id']);
+
+     //dd($service);
+    
+           $epif = Epif::find($data['id']);
+           // dd($servic);
+           $epif->text = $data['text'];
+           $epif->save();
+    
+     return redirect('/page/'.$data['pages_id']);
+
+     }
+
+     public function getEpif($id){
+           $epif = $this->e_rep->one($id);
+           return $epif;
+        }
+
+
     public function index()
     {
         //

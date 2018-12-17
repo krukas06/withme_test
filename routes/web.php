@@ -189,7 +189,7 @@ Route::post('admin/remarks', 'Admin\AdminController@addRemark')->middleware('aut
 Route::get('admin/epifs', 'Admin\AdminController@listEpifs')->middleware('auth');
 
 //путь для подтверждения сообщения
-Route::post('add_epif', 'Admin\AdminController@confirmationEpif')->middleware('auth');
+Route::post('del_epif', 'Admin\AdminController@confirmationEpif')->middleware('auth');
 
 
 
@@ -209,6 +209,18 @@ Route::resource('event', 'EventsController',['parametres'=>[
 
 ]
 ]);
+
+
+//путь для редактирования эпитафия
+Route::post('epif/edit', 'EpifController@editEpif')->middleware('auth');
+
+//путь для удаления эпитафия
+Route::post('epif/del', 'EpifController@deleteEpif')->middleware('auth');
+
+//путь для просмотра сообщений с лк (эпитафий)
+Route::get('list/message', 'PersonalController@listMessage')->middleware('auth');
+
+
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 
 Route::resource('photo', 'PhotoController@store')->middleware('auth');*/

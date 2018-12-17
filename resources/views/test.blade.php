@@ -100,6 +100,28 @@
                     @if($pages->id == $epif->pages_id && $epif->flag == 1)
                         <p>{{$epif->text}}</p>
                     @endif
+		    @if((Auth::id() == $epif->user_id) && ($pages->id == $epif->pages_id && $epif->flag == 1))
+			<form action="/epif/edit" method="post">
+				 <input type="hidden" name="id" value="{{$epif->id}}">
+       				 <input type="hidden" name="pages_id" value="{{$epif->pages_id}}">
+				 <input type="text" name="text" value="{{$epif->text}}">
+        			 {{csrf_field()}}
+       				 <button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-success" alt="">Редактировать</button>
+           
+			</form>
+
+			
+			@if($pages->user_id == Auth::id() || Auth::id() == $epif->user_id)
+			<form action="/epif/del" method="post">
+                                 <input type="hidden" name="id" value="{{$epif->id}}">
+				 <input type="hidden" name="pages_id" value="{{$epif->pages_id}}">
+                                 {{csrf_field()}}
+                                 <button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-success" alt="">Удалить</button>
+           
+                        </form>
+			@endif
+<br>
+		    @endif
                  @endforeach
 
 
@@ -172,6 +194,7 @@
             </div>
 
             <input type="hidden" name="img_candle" value="gregre">
+	    <input type="hidden" name="page_user_id" value="{{$pages->user_id}}">
             {{--<div class="form-check">
                 <input class="form-check-input" type="radio" name="svecha1" id="s1" value="option1" >
                 <label class="form-check-label abc" for="s1">

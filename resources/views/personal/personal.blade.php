@@ -14,6 +14,7 @@
 <a href="{{route('services.show', ['user_id'=>Auth::id()])}}"><h3><b>Заказы</b></h3></a>
 <a href="{{route('event.show', ['user_id'=>Auth::id()])}}"><h3><b>Мои личные события</b></h3></a>
 <a href="{{route('remark.show', ['user_id'=>Auth::id()])}}"><h3><b>Замечания</b></h3></a>
+<a href="/list/message"><h3><b>Сообщения {{(isset($kol)) ? $kol : '0'}}</b></h3></a>
 <a href="/events"><h3>Добавление события</h3></a>
 <br>
 <h3>Мои страницы</h3>
