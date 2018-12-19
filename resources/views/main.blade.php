@@ -14,8 +14,8 @@
 <div id="wrapper">
 
 <div class="logo">
-    <nav class="navbar navbar-expand-lg navbar-light bg-company">
-       <a class="navbar-brand logoti" href="#">Помню</a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+       <a class="navbar-brand" href="#"><img src="{{asset('images/logo.svg') }}" class="logotip" alt="Pomnu"></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>

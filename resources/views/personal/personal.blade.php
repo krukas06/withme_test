@@ -14,7 +14,7 @@
     <div id="wrapper">
     	<div class="logo">
       <nav class="navbar navbar-expand-lg navbar-light">
-       <a class="navbar-brand" href="#"><img src="{{asset('images/pomnu.png') }}" class="logotip" alt="Pomnu"></a>
+       <a class="navbar-brand" href="/"><img src="{{asset('images/logo.svg') }}" class="logotip" alt="Pomnu"></a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,6 +59,7 @@
   <li ><a href="#" class="notcheck check">Все</a></li>
 </ul>
 <div class="row justify-content-start guys">
+@if(isset($pages))
 @foreach($pages as $page)
 @foreach($page->img as $key=>$value)
 @if($key == 0)
@@ -71,8 +72,10 @@
 @endif
 @endif
 
+
 @endforeach
 @endforeach
+@endif
 @endif
 
 @endforeach

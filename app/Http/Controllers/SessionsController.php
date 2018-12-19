@@ -21,7 +21,7 @@ class SessionsController extends SiteController
         if ($this->signIn($request)) {
             $request->session()->flash('message', 'Добро пожаловать!');
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('personal');
         }
 
         $request->session()->flash('message', 'Вход запрещен!');

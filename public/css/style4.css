@@ -99,7 +99,7 @@ a:hover {
 .numb {
 	position: relative;
 	z-index: 100;
-	margin-left: 5px;
+	margin-left: 10px;
 	color:white;
 
 }
