@@ -220,6 +220,11 @@ Route::post('epif/del', 'EpifController@deleteEpif')->middleware('auth');
 //путь для просмотра сообщений с лк (эпитафий)
 Route::get('list/message', 'PersonalController@listMessage')->middleware('auth');
 
+//путь для просмотра ответов с лк (эпитафий)
+Route::get('list/answer', 'PersonalController@listAnswer')->middleware('auth');
+
+//путь для прочтения сообщения (эпитафия)
+Route::post('seen', 'PersonalController@seenMessage')->middleware('auth');
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 

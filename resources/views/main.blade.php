@@ -290,6 +290,7 @@
     <textarea class="form-control dva" id="predl" name="predlogenie" rows="5"
               placeholder="Предложение"></textarea>
                 </div>
+		<input type="hidden" name="user_id" value="{{Auth::id()}}" >
                 <button type="submit" class="btn btn-primary btn2"><img src="{{asset('images/no.png') }}"  class="add" alt=""> ОТПРАВИТЬ</button>
             </form>
         </div>

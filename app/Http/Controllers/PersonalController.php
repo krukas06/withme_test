@@ -7,23 +7,44 @@ use  App\Repository\UsersRepository;
 use  App\Repository\RolesRepository;
 use  App\Repository\PagesRepository;
 use  App\Repository\EpifsRepository;
+use  App\Repository\QuestionsRepository;
 use App\User;
+use App\Epif;
 use Illuminate\Support\Facades\Auth;
 
 class PersonalController extends SiteController{
 
 
-     public function __construct(EpifsRepository $e_rep, UsersRepository $u_rep, RolesRepository $rol_rep, PagesRepository $p_rep){
+     public function __construct( QuestionsRepository $q_rep, EpifsRepository $e_rep, UsersRepository $u_rep, RolesRepository $rol_rep, PagesRepository $p_rep){
 
 	$this->u_rep = $u_rep;
 	$this->rol_rep = $rol_rep;
 	$this->p_rep = $p_rep;
 	$this->e_rep=$e_rep;
+	$this->q_rep=$q_rep;
 
 
      }
 
 
+
+         public function seenMessage(Request $request)
+    {
+        //
+        $data = $request->all();
+        //dd($data);
+        $page = $this->getMessage($data['id']);
+        //dd($service);
+              
+           $epif = Epif::find($data['id']);
+          // dd($servic);       
+           $epif->seen = 1;
+           $epif->save();
+	//$pages = $this->getPages_list();
+        return redirect('/list/message');
+	//return view('admin.list_pages')->with('pages', $pages);
+    }
+    
 
 
     public function index()
@@ -41,7 +62,7 @@ class PersonalController extends SiteController{
 	foreach($epifs as $epif){
 		if($epif->seen == 0 && Auth::id() == $epif->page_user_id){
 			$kol++;
-		}
+		}	
 	}
 	}
 
@@ -73,16 +94,38 @@ class PersonalController extends SiteController{
 
         }
 
+         public function listAnswer()
+        {
+    //
+           $questions = $this->getAnswer();
+         //dd($services);
+           return view('personal.list_answer')->with('questions', $questions);
+
+        }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    	public function getMessage($id){
+           $epif = $this->e_rep->one($id);
+           return $epif;
+        }
+
+
     public function getEpifs(){
       $epifs = $this->e_rep->get('*');
       return $epifs;
     }
 
+
+    public function getAnswer(){
+      $questions = $this->q_rep->get('*');
+      return $questions;
+    }	
 
     public function getUsers(){
         $users = $this->u_rep->get('*');

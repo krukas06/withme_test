@@ -164,6 +164,7 @@ class AdminController extends SiteController
            $question = Question::find($data['id']);
           // dd($servic);       
            $question->flag = 1;
+	   $question->answer = $data['otvet'];
            $question->save();
          
 

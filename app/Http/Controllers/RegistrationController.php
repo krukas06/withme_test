@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\User;
 
+use Auth;
 use App\Mail\UserRegistered;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SiteController;
@@ -68,7 +69,15 @@ class RegistrationController extends SiteController
         return view('emails.register')->with('password', $password);
     }
 
-
+	
+        protected function getCredentials(Request $request)
+    {
+        return [
+	    'name'=>$request->input('name'),
+            'email'    => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+    }
 
     public function postRegister(Request $request)
 
@@ -104,7 +113,14 @@ class RegistrationController extends SiteController
 
        // $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
 	
-	return  view('emails.register')->with('status','На ваш адрес было выслано письмо с подтверждением регистрации.');
+	  $result = Auth::attempt($this->getCredentials($request), $request->has('remember'));
+
+	if($result){
+            $request->session()->flash('message', 'Добро пожаловать!');
+            return redirect()->intended('personal');
+	}
+	//return redirect('/personal');
+	//return  view('emails.register')->with('status','На ваш адрес было выслано письмо с подтверждением регистрации.');
     }
 }
 

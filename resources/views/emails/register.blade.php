@@ -57,7 +57,7 @@
   </div>
     <div>
 
-            <button class="btn button orange"  type="submit" name="submit" >Зарегистрироваться</button>
+            <button onclick="alert('На ваш почтовый ящик было выслано письмо для подтверждения регистрации')"  class="btn button orange"  type="submit" name="submit" >Зарегистрироваться</button>
             </div>
         </form>
     </div>

@@ -120,19 +120,22 @@
            
                         </form>
 			@endif
-<br>
 
-		@if(Auth::id() !== $epif->user_id)
+			@if(Auth::id() !== $epif->user_id)
+
 			<form action="/add_complain" method="post">
-                                 <input type="hidden" name="page_id" value="{{$pages->id}}">
-				  <input type="text" name="text_epif" value="{{$epif->text}}">
-                                 <input type="hidden" name="" value="{{$epif->pages_id}}">
+
+				  <input type="hidden" name="page_id" value="{{$pages->id}}">
+                                  <input type="hidden" name="i" value="{{$epif->id}}">
+                                  <input type="hidden" name="pages_id" value="{{$epif->pages_id}}">
                                  {{csrf_field()}}
                                  <button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-success" alt="">Удалить</button>
-           
-                        </form>
 
-		@endif
+                        </form>
+			@endif
+
+<br>			
+
 		    @endif
                  @endforeach
 
