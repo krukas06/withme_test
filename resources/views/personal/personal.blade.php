@@ -47,18 +47,19 @@
   <li><a href="/events">Календарь событий</a></li>
   <li><a href="/list/message">Уведомления<span class="numb">{{(isset($kol)) ? $kol : '0'}}</span><img src="{{asset('images/notifications.png') }}" alt=""></a></li>
   <li><a href="{{route('services.show', ['user_id'=>Auth::id()])}}">Заказы</a></li>
-  <li><a href="#">Настройки</a></li>
+  <li><a href="/setings">Настройки</a></li>
 </ul>
-<button type="submit" class="btn btn-primary btn1"><img src="{{asset('images/no.png') }}"  class="add" alt=""> ДОБАВИТЬ СТРАНИЦУ</button>
+<a href="/add_page"><button type="submit" class="btn btn-primary btn1"><img src="{{asset('images/no.png') }}"  class="add" alt=""> ДОБАВИТЬ СТРАНИЦУ</button></a>
 
   </div>
   <div class="col-md-9 B">
 		<ul class="list-counter-square list-justify str">
   
-  <li ><a href="#" class="notcheck">Личные</a></li>
-  <li ><a href="#" class="notcheck check">Все</a></li>
+  <li ><a href="/personal" class="notcheck">Личные</a></li>
+  <li ><a href="/pages_list" class="notcheck check">Все</a></li>
 </ul>
 <div class="row justify-content-start guys">
+@if (Request::is('personal'))
 @if(isset($pages))
 @foreach($pages as $page)
 @foreach($page->img as $key=>$value)
@@ -69,6 +70,8 @@
 	<p class="dannie">{{$page->surname}}<br>{{$page->name}} {{$page->Otchestvo}}</p>
 	<p class="dannie data"><strong>{{$page->data_birth}} - {{$page->data_dead}}</strong></p>
   </div>
+
+
 @endif
 @endif
 
@@ -77,9 +80,39 @@
 @endforeach
 @endif
 @endif
+@endif
+
+
+
+
+
 
 @endforeach
 @endif
+
+@if (Request::is('pages_list'))
+@foreach($pages as $page)
+@if($page->access == 0 || $page->user_id == Auth::id())
+@foreach($page->img as $key=>$value)
+@if($key == 0)
+  <div class="col-lg-3 ">
+        <a href="{{route('page.show', ['id'=>$page->id])}}"><img src="{{asset('images')}}/{{$value}}" alt="Фото"></a>
+        <p class="dannie">{{$page->surname}}<br>{{$page->name}} {{$page->Otchestvo}}</p>
+        <p class="dannie data"><strong>{{$page->data_birth}} - {{$page->data_dead}}</strong></p>
+  </div>
+
+
+@endif
+
+
+@endforeach
+@endif
+@endforeach
+
+
+@endif
+
+
 </div>
 
   </div>

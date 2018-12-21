@@ -144,6 +144,8 @@ Route::post('ulogin', 'UloginController@login');
 //маршрут для входа в личный кабинет
 Route::resource('personal', 'PersonalController')->only(['index'])->middleware('auth');
 
+//маршрут для отображения всех страниц в личном кабинете
+Route::resource('pages_list', 'PersonalController')->only(['index'])->middleware('auth');
 
 //путь для просмотра личных заказов через кабинет
 Route::resource('services', 'ServiceController',['parametres'=>[
@@ -225,6 +227,12 @@ Route::get('list/answer', 'PersonalController@listAnswer')->middleware('auth');
 
 //путь для прочтения сообщения (эпитафия)
 Route::post('seen', 'PersonalController@seenMessage')->middleware('auth');
+
+//путь для просиотра личных настроек
+Route::get('setings', 'PersonalController@getSetings')->middleware('auth');
+
+//путь для обновления личных настроек
+Route::post('seting_update', 'PersonalController@updateUser')->middleware('auth');
 
 /*Route::get('add_photo', 'PhotoController@create')->middleware('auth');
 

@@ -47,6 +47,31 @@ class PersonalController extends SiteController{
     
 
 
+         public function updateUser(Request $request)
+    {
+        //
+        $data = $request->all();
+        //dd($data);
+       // $user = $this->getUser($data['id']);
+        //dd($service);
+
+           $user = User::find($data['id']);
+          // dd($servic);
+	          
+           $user->surname = $data['surname'];
+           $user->name_l = $data['name_l'];
+	   $user->Otchestvo = $data['Otchestvo'];
+	   $user->name = $data['name'];
+	   $user->password = $data['password'];
+	   $user->email = $data['email'];
+	   $user->save();
+        //$pages = $this->getPages_list();
+        return redirect('/personal');
+        //return view('admin.list_pages')->with('pages', $pages);
+    }
+
+
+
     public function index()
     {
         //
@@ -103,6 +128,16 @@ class PersonalController extends SiteController{
 
         }
 
+	public function getSetings()
+        {
+    //
+           $users = $this->getUser(Auth::id());
+         //dd($services);
+           return view('personal.seting')->with('users', $users);
+
+        }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -114,6 +149,12 @@ class PersonalController extends SiteController{
            $epif = $this->e_rep->one($id);
            return $epif;
         }
+
+    public function getUser($id){
+           $user = $this->u_rep->one($id);
+           return $user;
+        }
+
 
 
     public function getEpifs(){
