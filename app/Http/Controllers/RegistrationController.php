@@ -69,6 +69,51 @@ class RegistrationController extends SiteController
         return view('emails.register')->with('password', $password);
     }
 
+
+    public function forgot()
+    {    
+        $password = $this->generatePassword();
+
+        $this->getPassword($password);
+
+        return view('emails.forgot')->with('password', $password);
+    }
+
+    public function postForgot(Request $request)
+
+   {
+
+	 $data = $request->all();
+
+  //      $user = User::create($request->all());
+
+//      Mail::to($user)->send(new UserRegistered($user));
+
+  //      $request->session()->flash('message', 'На ваш адрес было выслано письмо с подтверждением регистрации.');
+
+        $user = User::where('email',$data['email']) -> first();
+// dd($servic);
+       // dd($user);
+	$user->password = $data['password'];
+
+	$user->save();
+
+	        
+
+
+
+      // dd($request);
+
+        Mail::send('forgotpassword',['request'=>$request], function($message) use ($request){
+            $message->to($request['email'])->subject('Question');
+            $message->from('krukartem307@gmail.com', 'ot');
+
+        });
+
+	return redirect('/login');
+
+     }
+
 	
         protected function getCredentials(Request $request)
     {

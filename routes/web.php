@@ -124,6 +124,9 @@ Route::post('message', 'MessageController@message');
 Route::get('register', 'RegistrationController@register');
 Route::post('register', 'RegistrationController@postRegister');
 
+Route::get('forgotpassword', 'RegistrationController@forgot');
+Route::post('forgotpassword', 'RegistrationController@postForgot');
+
 Route::get('register/confirm/{token}', 'RegistrationController@confirmEmail');
 
 Route::get('login', 'SessionsController@login')->middleware('guest');

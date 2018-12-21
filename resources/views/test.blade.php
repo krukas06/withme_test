@@ -60,7 +60,7 @@
             <div class="text1">
                 <br>
                 <h1><strong>{{$pages->surname}} {{$pages->name}} {{$pages->Otchestvo}}</strong></h1>
-                <p class="data2"><b>{{$pages->data_birth}} - {{$pages->data_dead}}</b><br>
+                <p class="data2"><b>{{date('d.m.Y', strtotime($pages->data_birth))}} - {{date('d.m.Y', strtotime($pages->data_dead))}}</b><br>
                 <p class="cladbishe">{{$pages->burails_id}}<br>
                     ряд {{$pages->uchastok}}<br>место {{$pages->mogila}}</p>
                 <p class="cladbishe">посмотреть на карте  <img src="
@@ -122,17 +122,7 @@
 			@endif
 <br>
 
-		@if(Auth::id() !== $epif->user_id)
-			<form action="/add_complain" method="post">
-                                 <input type="hidden" name="page_id" value="{{$pages->id}}">
-				  <input type="text" name="text_epif" value="{{$epif->text}}">
-                                 <input type="hidden" name="" value="{{$epif->pages_id}}">
-                                 {{csrf_field()}}
-                                 <button type="submit" class="btn btn-primary btn4" value="Add" onClick="add()"><img src="img/no.png"  class="btn btn-success" alt="">Удалить</button>
-           
-                        </form>
-
-		@endif
+	
 		    @endif
                  @endforeach
 
@@ -189,7 +179,7 @@
         <form action="/epif_add" method="post">
 
          {{csrf_field()}}
-                <input type="hidden" name="user_id" value="1">
+                <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="candles_id" value="1">
         <input type="hidden" name="pages_id" value="{{$pages->id}}">
             <div class="form-group">

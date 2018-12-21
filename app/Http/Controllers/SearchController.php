@@ -17,8 +17,8 @@ class SearchController extends SiteController
 
         //dd($data);
 
-        $data = DB::table('pages')->where('surname', $data['surname'])->orWhere('name', $data['name'])->orWhere('Otchestvo', $data['Otchestvo'])
-                            ->orWhere('data_birth', $data['data_birth'])->orWhere('data_dead', $data['data_dead'])->get();
+        $data = DB::table('pages')->where('surname', 'LIKE', '%'.$data['surname'].'%' )->where('name','LIKE', '%'.$data['name'].'%')->where('Otchestvo','LIKE', '%'.$data['Otchestvo'].'%')
+                            ->where('data_birth','LIKE', '%'.$data['data_birth'].'%')->where('data_dead','LIKE', '%'.$data['data_dead'].'%')->get();
 
         //dd($data);
 

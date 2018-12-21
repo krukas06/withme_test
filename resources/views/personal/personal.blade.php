@@ -68,7 +68,7 @@
   <div class="col-lg-3 ">
   	<a href="{{route('page.show', ['id'=>$page->id])}}"><img src="{{asset('images')}}/{{$value}}" alt="Фото"></a>
 	<p class="dannie">{{$page->surname}}<br>{{$page->name}} {{$page->Otchestvo}}</p>
-	<p class="dannie data"><strong>{{$page->data_birth}} - {{$page->data_dead}}</strong></p>
+	<p class="dannie data"><strong>{{date('d.m.Y', strtotime($page->data_birth))}} - {{date('d.m.Y', strtotime($page->data_dead))}}</strong></p>
   </div>
 
 
