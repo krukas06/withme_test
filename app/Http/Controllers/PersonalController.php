@@ -105,7 +105,7 @@ class PersonalController extends SiteController{
 
 	//dd($pages);
 
-	return view('personal.personal')->with(array('users'=>$users, 'roles'=>$roles, 'pages'=>$pages, 'kol'=>$kol));;
+	return view('personal.personal')->with(array('users'=>$users, 'roles'=>$roles, 'pages'=>$pages, 'kol'=>$kol));
     }
 
 

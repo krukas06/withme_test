@@ -109,6 +109,11 @@ Route::resource('/', 'MainController')->only(['index']);
 //путь для поиска
 Route::post('search', 'SearchController@search');
 
+//путь для поиска
+Route::post('searchpersonal', 'SearchController@searchPersonal');
+
+
+
 //путь для заказа услуги
 Route::resource('service', 'ServiceController')->only(['store'])->middleware('auth');
 
